@@ -49,5 +49,5 @@ void ExampleTestCase::testEquals()
 }
 void ExampleTestCase::newTest()
 {
-	CPPUNIT_ASSERT_EQUAL(17,18);
+	CPPUNIT_ASSERT(17 > 16);
 }
