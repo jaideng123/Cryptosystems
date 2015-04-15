@@ -15,6 +15,7 @@ ls: cannot access /usr/lib/libcppunit-1.12.so.1: No such file or directory
 
 If you get this error when trying to run it, type the following in the terminal:
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:usr/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:cppunit/usr/lib (when running outside of folder)
 
 Then make and run the file again and hopefully it will work. 
 
