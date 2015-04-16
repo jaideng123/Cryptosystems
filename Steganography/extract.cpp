@@ -1,4 +1,4 @@
-#include "..\ImageStuff\CImg.h"
+#include "../ImageStuff/CImg.h"
 
 using namespace std;
 
