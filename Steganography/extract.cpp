@@ -1,3 +1,5 @@
+// Compile command: g++ -std=c++11 extract.cpp -lpthread -lX11
+
 #include "../ImageStuff/CImg.h"
 #include <vector>
 #include <string>
