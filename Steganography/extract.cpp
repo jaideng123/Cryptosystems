@@ -1,5 +1,7 @@
 #include "../ImageStuff/CImg.h"
 #include <vector>
+#include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -18,12 +20,12 @@ struct Pixel {
 // This function takes the name of an image to extract the LSB plane.
 // The second argument accepts either true for 1-LSB plane or 
 // false for 2-LSB plane
-vector<vector<Pixel>> extractLSB(string imageName, bool one = true) {
-	CImg<unsigned int>* image = new CImg<unsigned int>(imageName.c_str());
-	vector<vector<Pixel>> extractedData;
-	for(int i = 0; i < image->dimx(); ++i) {
+vector<vector<Pixel> > extractLSB(string imageName, bool one = true) {
+	cimg_library::CImg<unsigned int>* image = new cimg_library::CImg<unsigned int>(imageName.c_str());
+	vector<vector<Pixel> > extractedData;
+	for(int i = 0; i < image->width(); ++i) {
 		vector<Pixel> row;
-		for(int j = 0; j < image->dimy(); ++j) {
+		for(int j = 0; j < image->height(); ++j) {
 			unsigned int r = image->atXY(i,j,0);
 			unsigned int g = image->atXY(i,j,1);
 			unsigned int b = image->atXY(i,j,2);
@@ -44,7 +46,7 @@ vector<vector<Pixel>> extractLSB(string imageName, bool one = true) {
 }
 
 int main() {
-	vector<vector<Pixel>> data = extractLSB("andrewinclass.png");
+	vector<vector<Pixel> > data = extractLSB("andrewinclass.png");
 	for (int i = 0; i < data.size(); ++i) 
 		cout << data[i][0].r << " ";
 	return 0;
