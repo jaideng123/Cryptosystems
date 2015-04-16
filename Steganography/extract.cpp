@@ -1,4 +1,5 @@
 #include "../ImageStuff/CImg.h"
+#include <vector>
 
 using namespace std;
 
