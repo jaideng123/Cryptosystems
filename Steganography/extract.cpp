@@ -23,6 +23,7 @@ struct Pixel {
 // The second argument accepts either true for 1-LSB plane or 
 // false for 2-LSB plane
 vector<vector<Pixel> > extractLSB(string imageName, bool one = true) {
+
 	cimg_library::CImg<unsigned int>* image = new cimg_library::CImg<unsigned int>(imageName.c_str());
 	vector<vector<Pixel> > extractedData;
 	for(int i = 0; i < image->width(); ++i) {
