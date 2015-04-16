@@ -1,9 +1,10 @@
 /*
   Plan on implementing
   
-  -If Modulus n is small (less than 512 bits), 
-  then a desktop PC and a good factoring alg
-  can factor it in ONLY a matter of days!
+  -If primes p and q that make up the modulus were created
+  in a way that makes them likely to be close together,
+  and therefore close to sq(n), then n can be factored
+  using Fermat factorization
   
   -If either p-1 or q-1 have only small prime factors,
   then n can be factored using Pollard's p-1 alg
