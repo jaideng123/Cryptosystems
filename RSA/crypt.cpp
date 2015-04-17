@@ -14,14 +14,14 @@ BigUnsigned get_randint(BigUnsigned limit, int bit_length){
 
 	BigUnsigned summand,num;
 	summand = 1;
-	for (int i=0; i<bit_length; i++)
+	for (int i=0; i<bit_length; ++i)
 	{
 		srand(rand() ^ time(NULL));
-    	if (rand() & 1)
-    	{
-        	num += summand;
-    	}
-    	summand = summand << 1;
+    		if (rand() & 1)
+    		{
+        		num += summand;
+    		}
+    		summand = summand << 1;
 	}
 	BigUnsigned value = num % limit;
 	return value;
