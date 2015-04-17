@@ -4,6 +4,6 @@ RSAtest:
 setuptest:
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:cppunit/usr/lib
 munchkincrypt:
-	g++ RSA/crypt.cpp RSA/RSA.cpp $(bigint-objects)  -o munchkincrpyt
+	g++ RSA/crypt.cpp RSA/RSA.cpp $(bigint-objects) -w  -o munchkincrpyt
 clean:
 	rm *test munchkincrpyt
