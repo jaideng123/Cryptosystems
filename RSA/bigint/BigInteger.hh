@@ -211,14 +211,6 @@ inline void BigInteger::operator %=(const BigInteger &x) {
 inline void BigInteger::flipSign() {
 	sign = Sign(-sign);
 }
-//CSCE315 FUNCTIONS
-//Not inline because not a lot of anticipated use
-void BigInteger::pow(const BigInteger &x, int y){
-	if (!x.isZero()){
-		for(int i = 0; i < y; ++i){
-			multiply(*this, x);
-		}
-	}
-}
+
 
 #endif
