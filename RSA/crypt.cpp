@@ -7,7 +7,7 @@
 BigInteger generate_prime(int bit_length){
 	BigInteger a = 65536;
 	for (int i = 0; i < 20; ++i)
-	std::cout<<get_randint(100000000000,256)<<"\n";
+	std::cout<<pow(2,128)<<"\n";
 	return 0;
 }
 BigUnsigned get_randint(BigUnsigned limit, int bit_length){
@@ -25,4 +25,15 @@ BigUnsigned get_randint(BigUnsigned limit, int bit_length){
 	}
 	BigUnsigned value = num % limit;
 	return value;
+}
+//let's not put these functions in library files
+//only handles positive numbers
+BigUnsigned pow(BigUnsigned x, int y){
+	if (y == 0)
+		return 1;
+	BigUnsigned value = x;
+	for(int i = 0; i < y-1;++i){
+		x = x*value;
+	}
+	return x;
 }
