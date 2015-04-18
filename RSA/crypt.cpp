@@ -61,4 +61,33 @@ bool fermat(BigUnsigned p, int iterations){
 	}
 	return true;
 }
+//return true if number passes miller_rabin test
+bool miller_rabin(BigUnsigned p,int iteration){
+    if (p < 2)
+		return false;
+
+    if (p != 2 && p % 2==0)
+		return false;
+	
+    BigUnsigned s = p - 1;
+
+    while (s % 2 == 0)
+        s /= 2;
+
+    for (int i = 0; i < iteration; i++){
+        BigUnsigned a = get_randint((p-1),32) % (p - 1) + 1
+		BigUnsigned temp = s;
+        BigUnsigned mod = modulo(a, temp, p);
+
+        while (temp != p - 1 && mod != 1 && mod != p - 1){
+            mod = mulmod(mod, mod, p);
+            temp *= 2;
+        }
+
+        if (mod != p - 1 && temp % 2 == 0)
+            return false;
+    }
+
+    return true;
+}
 
