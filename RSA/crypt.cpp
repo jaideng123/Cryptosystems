@@ -6,8 +6,7 @@
 
 BigInteger generate_prime(int bit_length){
 	BigInteger a = 65536;
-	for (int i = 0; i < 20; ++i)
-	std::cout<<pow(2,128)<<"\n";
+	std::cout<<fermat(11,10)<<"\n";
 	return 0;
 }
 BigUnsigned get_randint(BigUnsigned limit, int bit_length){
@@ -36,4 +35,28 @@ BigUnsigned pow(BigUnsigned x, int y){
 		x = x*value;
 	}
 	return x;
+}
+BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod){
+	BigUnsigned x = 1;
+	BigUnsigned y = base;
+
+    while (exponent > 0){
+		if (exponent % 2 == 1)
+			x = (x * y) % mod;
+		y = (y * y) % mod;
+		exponent = exponent / 2;
+    }
+	
+    return x % mod;
+}
+//return true if number passes fermate test
+bool fermat(BigUnsigned p, int iterations){
+	if(p == 1)
+		return false;
+	for (int i = 0; i < iterations; i++){
+		BigUnsigned a = get_randint((p-1),32) + 1;
+		if(modulo(a,p-1,p) != 1)
+			return false;
+	}
+	return true;
 }
