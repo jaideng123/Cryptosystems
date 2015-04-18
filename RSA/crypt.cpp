@@ -5,11 +5,15 @@
 #include <iostream>
 
 BigUnsigned generate_prime(int bit_length){
-	BigUnsigned a(87178291199);
-	std::cout<<fermat(a,1)<<"\n";
-	return 0;
+	BigUnsigned result;
+	while(true){
+		result = get_randint(bit_length);
+		if(result % 2 != 0 && fermat(result,5) && miller_rabin(result,40))
+			break;
+	}
+	return result;
 }
-BigUnsigned get_randint(BigUnsigned limit, int bit_length){
+BigUnsigned get_randint(int bit_length){
 
 	BigUnsigned summand,num;
 	summand = 1;
@@ -22,7 +26,7 @@ BigUnsigned get_randint(BigUnsigned limit, int bit_length){
     		}
     		summand = summand << 1;
 	}
-	BigUnsigned value = num % limit;
+	BigUnsigned value = num;
 	return value;
 }
 //for getting modulus of a very large number
@@ -55,14 +59,14 @@ bool fermat(BigUnsigned p, int iterations){
 	if(p == 1)
 		return false;
 	for (int i = 0; i < iterations; i++){
-		BigUnsigned a = get_randint((p-1),32) + 1;
+		BigUnsigned a = get_randint(32) + 1;
 		if(modulo(a,p-1,p) != 1)
 			return false;
 	}
 	return true;
 }
 //return true if number passes miller_rabin test
-bool miller_rabin(BigUnsigned p,int iteration){
+bool miller_rabin(BigUnsigned p,int iterations){
     if (p < 2)
 		return false;
 
@@ -74,13 +78,13 @@ bool miller_rabin(BigUnsigned p,int iteration){
     while (s % 2 == 0)
         s /= 2;
 
-    for (int i = 0; i < iteration; i++){
-        BigUnsigned a = get_randint((p-1),32) % (p - 1) + 1
+    for (int i = 0; i < iterations; i++){
+        BigUnsigned a = get_randint(32) % (p - 1) + 1;
 		BigUnsigned temp = s;
         BigUnsigned mod = modulo(a, temp, p);
 
         while (temp != p - 1 && mod != 1 && mod != p - 1){
-            mod = mulmod(mod, mod, p);
+            mod = mod*mod % p;
             temp *= 2;
         }
 

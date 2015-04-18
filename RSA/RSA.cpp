@@ -2,6 +2,6 @@
 
 using namespace std;
 int main(){
-	generate_prime(0);
+	cout<<generate_prime(4)<<endl;
 	return 0;
 }
