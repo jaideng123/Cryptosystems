@@ -4,9 +4,9 @@
 #include "crypt.h"
 #include <iostream>
 
-BigInteger generate_prime(int bit_length){
-	BigInteger a = 65536;
-	std::cout<<fermat(11,10)<<"\n";
+BigUnsigned generate_prime(int bit_length){
+	BigUnsigned a(87178291199);
+	std::cout<<fermat(a,1)<<"\n";
 	return 0;
 }
 BigUnsigned get_randint(BigUnsigned limit, int bit_length){
@@ -25,17 +25,7 @@ BigUnsigned get_randint(BigUnsigned limit, int bit_length){
 	BigUnsigned value = num % limit;
 	return value;
 }
-//let's not put these functions in library files
-//only handles positive numbers
-BigUnsigned pow(BigUnsigned x, int y){
-	if (y == 0)
-		return 1;
-	BigUnsigned value = x;
-	for(int i = 0; i < y-1;++i){
-		x = x*value;
-	}
-	return x;
-}
+//for getting modulus of a very large number
 BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod){
 	BigUnsigned x = 1;
 	BigUnsigned y = base;
@@ -46,10 +36,21 @@ BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod){
 		y = (y * y) % mod;
 		exponent = exponent / 2;
     }
-	
+
     return x % mod;
 }
-//return true if number passes fermate test
+//let's not put these functions in library files
+//only handles positive numbers
+BigUnsigned pow(BigUnsigned x, BigUnsigned y){
+	if (y == 0)
+		return 1;
+	BigUnsigned value = x;
+	for(BigUnsigned i = 0; i < y-1;++i){
+		x = x*value;
+	}
+	return x;
+}
+//return true if number passes fermat test
 bool fermat(BigUnsigned p, int iterations){
 	if(p == 1)
 		return false;
@@ -60,3 +61,4 @@ bool fermat(BigUnsigned p, int iterations){
 	}
 	return true;
 }
+

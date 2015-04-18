@@ -1,6 +1,7 @@
 #include <cppunit/config/SourcePrefix.h>
 #include "RSATestCase.h"
 #include "crypt.h"
+#include "bigint/BigIntegerLibrary.hh"
 
 CPPUNIT_TEST_SUITE_REGISTRATION( RSATestCase );
 
@@ -12,7 +13,7 @@ void RSATestCase::example()
 }
 void RSATestCase::primeTest()
 {
- 	int value = generate_prime(4);
+ 	BigUnsigned value = generate_prime(4);
  	CPPUNIT_ASSERT( value == 2 || value == 3 || value == 5 || 
  					value == 7 || value == 11|| value == 13);
 }
