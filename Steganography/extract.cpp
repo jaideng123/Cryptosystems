@@ -18,6 +18,10 @@ struct Pixel {
 	}
 };
 
+ostream& operator<<(ostream& os, const Pixel& pix) {
+	os << '(' << pix.r << ',' << pix.g << ',' << pix.b << ')';
+	return os;
+}
 
 // This function takes the name of an image to extract the LSB plane.
 // The second argument accepts either true for 1-LSB plane or 
@@ -32,6 +36,7 @@ vector<vector<Pixel> > extractLSB(string imageName, bool one = true) {
 			unsigned int r = image->atXY(i,j,0);
 			unsigned int g = image->atXY(i,j,1);
 			unsigned int b = image->atXY(i,j,2);
+			cout << '(' << r << ',' << g << ',' << b << ")   ";
 			if (one) {
 				r = r & 1;
 				g = g & 1;
@@ -45,12 +50,13 @@ vector<vector<Pixel> > extractLSB(string imageName, bool one = true) {
 		}
 		extractedData.push_back(row);
 	}
+	cout << endl << endl << endl;
 	return extractedData;	
 }
 
 int main() {
-	vector<vector<Pixel> > data = extractLSB("andrewinclass.png");
+	vector<vector<Pixel> > data = extractLSB("lena512.bmp");
 	for (int i = 0; i < data.size(); ++i) 
-		cout << data[i][0].r << " ";
+		cout << data[i][0] << " ";
 	return 0;
 }
