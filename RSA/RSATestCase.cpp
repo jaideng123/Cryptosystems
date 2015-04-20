@@ -21,8 +21,12 @@ void RSATestCase::primeTest()
 
 void RSATestCase::generateKeyTest()
 {
-    BigUnsigned value = generate_keys(7, 13);
-    cout << "Value: " << value << endl;
+    vector<BigUnsigned> value = generate_keys(61, 53, 17);
+
+    // Check n value
+    CPPUNIT_ASSERT(value[0] == 3233);
+    // Check d value
+    CPPUNIT_ASSERT(value[1] == 2753);
 }
 
 void RSATestCase::setUp(){

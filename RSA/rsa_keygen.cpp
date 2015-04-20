@@ -50,7 +50,7 @@ my_size encode(my_size message, my_size n, my_size e) {
     return result % n;
 }
 
-BigUnsigned generate_keys(BigUnsigned prime1, BigUnsigned prime2)
+vector<BigUnsigned> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE)
 {
     srand(time(NULL));
 
@@ -72,11 +72,18 @@ BigUnsigned generate_keys(BigUnsigned prime1, BigUnsigned prime2)
 
     my_size e;
 
-    bool done = false;
-    while(!done) {
-        e = (((BigUnsigned)rand())%(ETn-1))+1;
-        if(gcd(e, ETn) == 1) {
-            done = true;
+    if(testE != 0)
+    {
+        e = testE;
+    }
+    else
+    {
+        bool done = false;
+        while(!done) {
+            e = (((BigUnsigned)rand())%(ETn-1))+1;
+            if(gcd(e, ETn) == 1) {
+                done = true;
+            }
         }
     }
 
