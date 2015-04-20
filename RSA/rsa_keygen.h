@@ -7,4 +7,4 @@
 
 using namespace std;
 
-
+BigUnsigned generate_keys(BigUnsigned prime1, BigUnsigned prime2);

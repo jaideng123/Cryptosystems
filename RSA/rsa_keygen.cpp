@@ -1,6 +1,6 @@
 #include "rsa_keygen.h"
 
-typedef BitInteger my_size;
+typedef BigUnsigned my_size;
 
 my_size multInv(my_size a, my_size b) {
 
@@ -28,7 +28,7 @@ my_size multInv(my_size a, my_size b) {
 
     return x_1;
 }
-
+/*
 my_size gcd(my_size a, my_size b) {
     my_size c;
 
@@ -40,24 +40,22 @@ my_size gcd(my_size a, my_size b) {
 
     return b;
 }
-
+*/
 my_size encode(my_size message, my_size n, my_size e) {
     my_size result = message;
-    for(int i = 1; i < e; i++) {
+    for(BigUnsigned i = 1; i < e; i++) {
         result *= message;
     }
 
     return result % n;
 }
 
-int main(int argc, char* argv[]) {
-    if(argc < 3)
-        cerr << "Wrong number of args" << endl << flush;
-
+BigUnsigned generate_keys(BigUnsigned prime1, BigUnsigned prime2)
+{
     srand(time(NULL));
 
-    my_size p = atoi(argv[1]);
-    my_size q = atoi(argv[2]);
+    my_size p = prime1;
+    my_size q = prime2;
 
     cout << "My Primes: " << p << " & " << q << endl;
 
@@ -73,17 +71,12 @@ int main(int argc, char* argv[]) {
     cout << "Computed ET(n): " << ETn << endl << flush;
 
     my_size e;
-    if(argc > 3) {
-        e = atoi(argv[3]);
-    }
-    else {
-        bool done = false;
 
-        while(!done) {
-            e = (rand()%(ETn-1))+1;
-            if(gcd(e, ETn) == 1) {
-                done = true;
-            }
+    bool done = false;
+    while(!done) {
+        e = (((BigUnsigned)rand())%(ETn-1))+1;
+        if(gcd(e, ETn) == 1) {
+            done = true;
         }
     }
 

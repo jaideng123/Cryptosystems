@@ -4,7 +4,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-/* 
+/*
  * A test case that is designed to produce
  * example errors and failures
  *
@@ -26,6 +26,7 @@ public:
 
 protected:
   void primeTest();
+  void generateKeyTest();
   void example();
 };
 
