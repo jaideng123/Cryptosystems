@@ -55,7 +55,7 @@ vector<vector<Pixel> > extractLSB(string imageName, bool one = true) {
 }
 
 int main() {
-	vector<vector<Pixel> > data = extractLSB("lena512.bmp");
+	vector<vector<Pixel> > data = extractLSB("baboon.bmp");
 	for (int i = 0; i < data.size(); ++i) 
 		cout << data[i][0] << " ";
 	return 0;
