@@ -1,5 +1,6 @@
 #include "bigint/BigIntgerLibrary.hh"
 #include "math_function.h"
+#include "crypt.h"
 /*
   Plan on implementing
   

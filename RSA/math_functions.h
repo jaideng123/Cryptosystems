@@ -2,13 +2,19 @@
 
 BigUnsigned bigint_sqrt(BigUnsigned val){  
 	unsigned result = static_cast<unsigned>(sqrt(static_cast<float>(val)));  
-	do { ++result; } while(result * result <= val);  
-	do { --result; } while(result * result > val);  
-	return result;  
+	
+	do { ++result; } 
+	while(result * result <= val); 
+
+	do { --result; }
+	while(result * result > val);
+
+	return result;
 }
 
-BigUnsigned bigint_sq(BigUnsigned val, int pow){
+BigUnsigned bigint_pow(BigUnsigned val, int pow){
 	BigUnsigned result = 1;
+
     if ( pow > 0){
         for (int n = 0; n < pow; n++){
             Return *= val;
@@ -21,4 +27,18 @@ BigUnsigned bigint_sq(BigUnsigned val, int pow){
     }
     
     return result;
+}
+
+bool bigint_test_sqrt(BigUnsigned val){
+	if(val < 0) return false;
+
+	switch((BigUnsigned)(n & 0xF))
+    {
+    	case 0: case 1: case 4: case 9:
+        	BigUnsigned x = (BigUnsigned)bigint_sqrt(val);
+        	return x*x == val;
+	    default:
+    	    return false;
+    }
+
 }

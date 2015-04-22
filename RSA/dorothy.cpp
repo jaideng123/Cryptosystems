@@ -6,12 +6,21 @@ void fermat(BigInteger n){
   		and therefore close to sq(n), then n can be factored
   		using Fermat factorization
 	*/
-  	BigInteger x, y;
+  	BigInteger k, p, q, test_sqrt;
 
-  	x = Math.ceil(bigint_sqrt(n));
+  	k = bigint_sqrt(n);
 
+  	while(true){
+  		test_sq = (bigint_pow(k,2) - n);
+  		if(bigint_test_sqrt(test_sqrt)){
+  			p = k + bigint_sqrt(test_sqrt);
+  			q = k - bigint_sqrt(test_sqrt);
+  		}
+  		k--;
+  	}
+
+  	//fermat_check()
   	
-
 }
 
 void pollards(){
