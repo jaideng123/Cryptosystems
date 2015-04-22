@@ -1,13 +1,14 @@
 #include "rsa_keygen.h"
 
 typedef BigUnsigned my_size;
+typedef BigInteger my_size_sign;
 
-my_size multInv(my_size a, my_size b) {
+my_size_sign multInv(my_size_sign a, my_size_sign b) {
 
-    my_size b_0 = b;
-    my_size t, q;
-    my_size x_0 = 0;
-    my_size x_1 = 1;
+    my_size_sign b_0 = b;
+    my_size_sign t, q;
+    my_size_sign x_0 = 0;
+    my_size_sign x_1 = 1;
 
     if(b == 1)
         return 1;
@@ -20,7 +21,11 @@ my_size multInv(my_size a, my_size b) {
         a = t;
 
         t = x_0;
-        x_0 = x_1 - q * x_0;
+
+        cout << "q * x_0 = " << q*x_0 << endl;
+        cout << "x_1 = " << x_1 << endl;
+
+        x_0 = (x_1 - (q * x_0));
         x_1 = t;
     }
     if(x_1 < 0)
@@ -50,7 +55,7 @@ my_size encode(my_size message, my_size n, my_size e) {
     return result % n;
 }
 
-vector<BigUnsigned> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE)
+vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE)
 {
     srand(time(NULL));
 
@@ -90,19 +95,15 @@ vector<BigUnsigned> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUns
     cout << "e found: " << e << endl << flush;
 
 
-    my_size d = multInv(e, ETn);
+    my_size_sign d = multInv(e, ETn);
 
     cout << "d found: " << d << endl << flush;
 
+    vector<BigInteger> keys;
+    BigInteger newN = n;
 
-    cout << "\n\nPublic Key: (n = " << n << ",  e = " << e << ")" << endl << flush;
-    cout << "Private Key: (d = " << d << ")" << endl << flush;
+    keys.push_back(newN);
+    keys.push_back(d);
 
-
-    // Demonstrate fake message
-    my_size message = 65;
-
-    my_size cipher = encode(message, n, e);
-
-    cout << "Encrypted message: " << cipher << endl << flush;
+    return keys;
 }
