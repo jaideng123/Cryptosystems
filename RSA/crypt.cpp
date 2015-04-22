@@ -3,7 +3,16 @@
 #include <time.h>       /* time */
 #include "crypt.h"
 #include <iostream>
+#include <string>
 
+string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
+	BigUnsigned m = modulo(c,d,n);
+	cout<<m<<endl;
+	string str;
+	int value = m.toInt();
+	str += (char)value;
+	return str;
+}
 BigUnsigned generate_prime(int bit_length){
 	BigUnsigned result;
 	while(true){
