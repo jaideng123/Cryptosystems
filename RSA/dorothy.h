@@ -1,4 +1,5 @@
 #include "bigint/BigIntgerLibrary.hh"
+#include "math_function.h"
 /*
   Plan on implementing
   
@@ -15,8 +16,8 @@
   can be recovered by finding the e-th root fo the ciphertext
 */
 
-void Fermat();
+void fermat();
 
-void Pollards();
+void pollards();
 
 void exp_encrypt();
