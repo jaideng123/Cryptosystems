@@ -16,6 +16,7 @@ class RSATestCase : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( example );
   CPPUNIT_TEST( primeTest );
   CPPUNIT_TEST( generateKeyTest );
+  CPPUNIT_TEST( decryptTest );
   CPPUNIT_TEST_SUITE_END();
 
 protected:
@@ -28,6 +29,7 @@ public:
 protected:
   void primeTest();
   void generateKeyTest();
+  void decryptTest();
   void example();
 };
 

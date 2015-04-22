@@ -8,4 +8,4 @@
 
 using namespace std;
 
-vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE = 0);
+vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE);

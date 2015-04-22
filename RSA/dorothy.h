@@ -1,3 +1,4 @@
+#include "bigint/BigIntgerLibrary.hh"
 /*
   Plan on implementing
   
@@ -13,3 +14,9 @@
   and the message m is small, so that m^e < n, then m
   can be recovered by finding the e-th root fo the ciphertext
 */
+
+void Fermat();
+
+void Pollards();
+
+void exp_encrypt();
