@@ -32,7 +32,7 @@ void RSATestCase::decryptTest(){
 	BigUnsigned n = 6035011;
   BigUnsigned d = 3808421;
   BigUnsigned c = 3436184;
-	CPPUNIT_ASSERT(decrypt(c,d,n) == "J");
+	CPPUNIT_ASSERT(decrypt(c,d,n) == "JLG");
 }
 
 void RSATestCase::setUp(){
