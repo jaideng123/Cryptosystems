@@ -1,12 +1,31 @@
 #include "dorothy.h"
 
-void fermat(){
+void fermat(BigInteger n, BigInteger p, BigInteger q){
 	/*TODO:If primes p and q that make up the modulus were created
   		in a way that makes them likely to be close together,
   		and therefore close to sq(n), then n can be factored
   		using Fermat factorization
 	*/
+  	BigInteger x, y, xx, yy, e;
+  	a = 1;
+  	b = 1;
+  	e = -n;
 
+  	while(e != 0){
+  		if(e < 0){
+  			e += b;
+  			b += 2;
+  		}
+  		else{
+  			e -= a;
+  			a += 2;
+  		}
+  	}
+
+  	x = (a - 1)/2;
+  	y = (b - 1)/2;
+  	q = y + x;
+  	p = y - x;
 
 }
 
