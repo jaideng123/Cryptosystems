@@ -1,6 +1,5 @@
-#include "bigint/BigIntgerLibrary.hh"
-#include "math_function.h"
-#include "crypt.h"
+#include "fermat_att.h"
+
 /*
   Plan on implementing
   
@@ -17,8 +16,4 @@
   can be recovered by finding the e-th root fo the ciphertext
 */
 
-void fermat();
-
-void pollards();
-
-void exp_encrypt();
+//will run all attacks
