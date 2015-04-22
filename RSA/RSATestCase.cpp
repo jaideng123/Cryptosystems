@@ -29,9 +29,9 @@ void RSATestCase::generateKeyTest()
     CPPUNIT_ASSERT(value[1] == 2753);
 }
 void RSATestCase::decryptTest(){
-	BigUnsigned n = 3233;
-	BigUnsigned d = 2753;
-	BigUnsigned c = 1877;
+	BigUnsigned n = 6035011;
+  BigUnsigned d = 3808421;
+  BigUnsigned c = 3436184;
 	CPPUNIT_ASSERT(decrypt(c,d,n) == "J");
 }
 

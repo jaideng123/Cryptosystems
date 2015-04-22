@@ -9,6 +9,7 @@ string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
 	BigUnsigned m = modulo(c,d,n);
 	cout<<m<<endl;
 	string str;
+	m &= 255;
 	int value = m.toInt();
 	str += (char)value;
 	return str;
