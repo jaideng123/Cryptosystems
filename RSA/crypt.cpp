@@ -71,7 +71,7 @@ BigUnsigned pow(BigUnsigned x, BigUnsigned y){
 	return x;
 }
 //return true if number passes fermat test
-bool fermat(BigUnsigned p, int iterations){
+bool fermat_check(BigUnsigned p, int iterations){
 	if(p == 1)
 		return false;
 	for (int i = 0; i < iterations; i++){
