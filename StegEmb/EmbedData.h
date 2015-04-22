@@ -5,8 +5,22 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <bitset>
 
 using namespace std;
+using namespace cimg_library;
+
+struct Pixel {
+	unsigned int r;
+	unsigned int g;
+	unsigned int b;
+	Pixel(unsigned int rr, unsigned int gg, unsigned int bb) {
+		r = rr;
+		g = gg;
+		b = bb;
+	}
+};
 
 class EmbedData
 {
@@ -16,8 +30,9 @@ class EmbedData
 	public:
 		EmbedData();
 		EmbedData(string fName);
-		int signalToNoise(); //report PSNR of stego-image
-		void embedInBits(); //embed data in the LS bits 
+		CImg<unsigned int> embedInBits(string imageName, string message);
+		vector<string> stringToBits(string str);
+		string extract(CImg<unsigned int> image);
 		int getNumBits(){return bitsEmbedded;}
 };
 

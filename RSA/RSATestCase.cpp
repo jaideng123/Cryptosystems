@@ -21,7 +21,7 @@ void RSATestCase::primeTest()
 
 void RSATestCase::generateKeyTest()
 {
-    vector<BigUnsigned> value = generate_keys(61, 53, 17);
+    vector<BigInteger> value = generate_keys(61, 53, 17);
 
     // Check n value
     CPPUNIT_ASSERT(value[0] == 3233);
