@@ -8,8 +8,9 @@
 class EmbeddingTest : public CPPUNIT_NS::TestFixture
 {
 	CPPUNIT_TEST_SUITE( EmbeddingTest );
-	CPPUNIT_TEST( testLSB );
-	CPPUNIT_TEST( testEmbedding );
+	CPPUNIT_TEST( testSize );
+	CPPUNIT_TEST( testEmbedding1 );
+	CPPUNIT_TEST( testEmbedding2 );
 	CPPUNIT_TEST_SUITE_END();
 	
 	protected:
@@ -20,8 +21,9 @@ class EmbeddingTest : public CPPUNIT_NS::TestFixture
 		void setUp();
 	
 	protected:
-		void testLSB();
-		void testEmbedding();
+		void testSize();
+		void testEmbedding1();
+		void testEmbedding2();
 };
 
 #endif
