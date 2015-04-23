@@ -1,8 +1,14 @@
-#include "bigint/BigIntgerLibrary.hh"
-#include "math_function.h"
+#include "math_functions.h"
 #include "crypt.h"
 
 class fermat_att{
 	int p,q;
-	void _fermat(BigInteger);
+public:
+	void _fermat(BigUnsigned);
+	int get_p(){
+		return p;
+	}
+	int get_q(){
+		return q;
+	}
 };
