@@ -4,6 +4,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include "EmbedData.h"
+#include "RandomizationAttack.h"
 
 class EmbeddingTest : public CPPUNIT_NS::TestFixture
 {
@@ -11,6 +12,7 @@ class EmbeddingTest : public CPPUNIT_NS::TestFixture
 	CPPUNIT_TEST( testSize );
 	CPPUNIT_TEST( testEmbedding1 );
 	CPPUNIT_TEST( testEmbedding2 );
+	CPPUNIT_TEST( testAttack );
 	CPPUNIT_TEST_SUITE_END();
 	
 	protected:
@@ -24,6 +26,7 @@ class EmbeddingTest : public CPPUNIT_NS::TestFixture
 		void testSize();
 		void testEmbedding1();
 		void testEmbedding2();
+		void testAttack();
 };
 
 #endif

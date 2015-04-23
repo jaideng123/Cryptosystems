@@ -18,7 +18,9 @@ void EmbeddingTest::testSize()
 	EmbedData test;
 	string message = "Found the hidden message!";
 	test.embedInBits("lena512.bmp", message);
-	CPPUNIT_ASSERT(test.getNumBits() == message.size()*8);
+	
+	//Is the embedded size correct?
+	CPPUNIT_ASSERT(test.getNumBits() == message.size()*12);
 }
 void EmbeddingTest::testEmbedding1()
 {
@@ -40,4 +42,18 @@ void EmbeddingTest::testEmbedding2()
 	
 	//extracted data the same as original with non-fixed size?
 	CPPUNIT_ASSERT(extractData2 == message2);
+}
+void EmbeddingTest::testAttack()
+{
+	EmbedData test;
+	RandomizationAttack attackTest;
+	string attackMessage = "The attack did not work!";
+	string initialExtraction = test.extract(test.embedInBits("lena512.bmp", attackMessage));
+	cout<<"Data Extracted before the attack: "<< initialExtraction << endl;
+	attackTest.randomizeBits("EmbeddedPic.bmp");
+	string afterAttack = test.extract("EmbeddedPic.bmp");
+	//cout<<"Data Extracted after the attack: "<< afterAttack << endl;
+	
+	//Is the message after the attack different than before?
+	CPPUNIT_ASSERT(afterAttack != initialExtraction);
 }

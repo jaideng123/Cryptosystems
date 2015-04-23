@@ -2,6 +2,6 @@
 
 using namespace std;
 int main(){
-	cout<<generate_prime(4)<<endl;
+	cout<<decrypt_file(2753,3233,"RSA/decrypt_test.txt")<<endl;
 	return 0;
 }
