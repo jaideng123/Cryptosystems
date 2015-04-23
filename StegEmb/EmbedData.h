@@ -30,9 +30,9 @@ class EmbedData
 	public:
 		EmbedData();
 		EmbedData(string fName);
-		CImg<unsigned int> embedInBits(string imageName, string message);
+		string embedInBits(string imageName, string message);
 		vector<string> stringToBits(string str);
-		string extract(CImg<unsigned int> image);
+		string extract(string imageName);
 		int getNumBits(){return bitsEmbedded;}
 };
 
