@@ -4,6 +4,8 @@ RSAtest:
 	g++ -g -I cppunit/usr/include/ -L cppunit/usr/lib/ -lm -ldl -lcppunit RSA/RSATestCase.cpp RSA/Main.cpp RSA/crypt.cpp RSA/rsa_keygen.cpp $(bigint-objects) -o RSAtest
 Stegotest:
 	g++ -I cppunit/usr/include/ -L cppunit/usr/lib/ -lm -ldl -lcppunit Steganography/CommandLineArgs/StegoCLATest.cpp -o StegoCLAtest
+fermat_att_test:
+	g++ -g -I cppunit/usr/include/ -L cppunit/usr/lib/ -lm -ldl -lcppunit RSA/fermat_att_test.cpp RSA/Main.cpp RSA/crypt.cpp RSA/fermat_att.cpp $(bigint-objects) -o fermat_att_test
 setuptest:
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:cppunit/usr/lib
 munchkincrypt:
