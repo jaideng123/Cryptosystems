@@ -3,11 +3,11 @@
 #include <time.h>       /* time */
 #include "crypt.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 
 string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
 	BigUnsigned m = modulo(c,d,n);
-	cout<<m<<endl;
 	string str;
 	while(true){
 		BigUnsigned letter = m & 255;
@@ -16,9 +16,28 @@ string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
 		int value = letter.toInt();
 		str += (char)value;
 		m = m >> 8;
-		cout<<(char)value<<endl;
 	}
 	return str;
+}
+//decrypts a file in blocks, no output file = output to screen
+string decrypt_file(BigUnsigned d, BigUnsigned n,string file_name){
+	string result;
+	string current;
+	ifstream myfile(file_name.c_str());
+  	if (myfile.is_open())
+ 	{
+    	while (getline(myfile,current)){
+    		BigUnsigned c = stringToBigUnsigned(current);
+    		result += decrypt(c,d,n);
+    	}
+    	myfile.close();
+  	}
+  	else{
+  		cout<<"Error: Could not open file"<<endl;
+		return "";
+	}
+	return result;
+
 }
 BigUnsigned generate_prime(int bit_length){
 	BigUnsigned result;

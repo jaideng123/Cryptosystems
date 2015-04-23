@@ -8,3 +8,4 @@ BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod);
 bool fermat(BigUnsigned p, int iterations);
 bool miller_rabin(BigUnsigned p,int iterations);
 string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n);
+string decrypt_file(BigUnsigned d, BigUnsigned n,string file_name);
