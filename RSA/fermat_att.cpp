@@ -7,6 +7,11 @@ void fermat_att::_fermat(mpz_t n){
   		using Fermat factorization
 	*/
   	mpz_t k, p, q, test_sqrt, temp;
+  	mpz_t_init(k);
+  	mpz_t_init(p);
+  	mpz_t_init(q);
+  	mpz_t_init(test_sqrt);
+  	mpz_t_init(temp);
 
   	//Sets k to the sqrt(n)
   	mpz_sqrt(k,n);
@@ -15,7 +20,7 @@ void fermat_att::_fermat(mpz_t n){
   		//Makes temp = k*k
   		mpz_mul(temp, k, k);
   		test_sqrt = (temp - n);
-  		
+
   		if(bigint_test_sqrt(test_sqrt)){
   			p = k + bigint_sqrt(test_sqrt);
   			q = k - bigint_sqrt(test_sqrt);

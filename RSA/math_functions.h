@@ -11,9 +11,14 @@
 }*/
 
 mpz_t bigint_sqrt(mpz_t val){  
-	mpz_t result;
-    unsigned long x = result.toUnsignedLong();
-    double g (1), ng;
+	mpz_t result, g, ng;
+    mpz_t_init(result);
+    mpz_t_init(g);
+    mpz_t_set_ui(g,1);//init g to 1
+    mpz_t_init(ng);
+
+
+    //double g (1), ng;
     while (true) {
         double ng = (x/g + g)/2;
         if (g == ng) break;
@@ -32,7 +37,9 @@ mpz_t bigint_sqrt(mpz_t val){
 }
 
 mpz_t bigint_pow(mpz_t val, int pow){
-	mpz_t result = 1;
+	mpz_t result;
+    mpz_t_init(result);
+    mpz_t_set_ui(result, 1);
 
     if ( pow > 0){
         for (int n = 0; n < pow; n++){
@@ -52,6 +59,7 @@ bool bigint_test_sqrt(mpz_t val){
 	if(val < 0) return false;
 
     mpz_t x;
+    mpz_t_init(x);
 
 	if((val & 0xF) == 0 ||(val & 0xF) == 1 ||
        (val & 0xF) == 4 ||(val & 0xF) == 9 )
