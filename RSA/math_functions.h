@@ -1,17 +1,17 @@
-#include "bigint/BigIntegerLibrary.hh"
+#include "mini-gmp/mini-gmp.h"
 
 //Gets ceiling of 'bigint' after it goes through division
-BigUnsigned bigint_ceil_afterdiv(BigUnsigned val, int diviser){
+/*mpz_t bigint_ceil_afterdiv(mpz_t val, int diviser){
     if(val%diviser == 0){
         return val;
     }
     else{
         return val + 1;
     }
-}
+}*/
 
-BigUnsigned bigint_sqrt(BigUnsigned val){  
-	BigUnsigned result;
+mpz_t bigint_sqrt(mpz_t val){  
+	mpz_t result;
     unsigned long x = result.toUnsignedLong();
     double g (1), ng;
     while (true) {
@@ -19,7 +19,7 @@ BigUnsigned bigint_sqrt(BigUnsigned val){
         if (g == ng) break;
         g = ng;
     }
-    result = BigUnsigned((unsigned long)g);
+    result = mpz_t((unsigned long)g);
 	//^Might need BigDec
 
 	do { ++result; } 
@@ -31,8 +31,8 @@ BigUnsigned bigint_sqrt(BigUnsigned val){
 	return result;
 }
 
-BigUnsigned bigint_pow(BigUnsigned val, int pow){
-	BigUnsigned result = 1;
+mpz_t bigint_pow(mpz_t val, int pow){
+	mpz_t result = 1;
 
     if ( pow > 0){
         for (int n = 0; n < pow; n++){
@@ -48,15 +48,15 @@ BigUnsigned bigint_pow(BigUnsigned val, int pow){
     return result;
 }
 
-bool bigint_test_sqrt(BigUnsigned val){
+bool bigint_test_sqrt(mpz_t val){
 	if(val < 0) return false;
 
-    BigUnsigned x;
+    mpz_t x;
 
 	if((val & 0xF) == 0 ||(val & 0xF) == 1 ||
        (val & 0xF) == 4 ||(val & 0xF) == 9 )
     {
-        x = bigint_sqrt(val);
+        mpz_sqrt(x, val);
         return (x*x == val);
     }
     else{
