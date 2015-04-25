@@ -2,13 +2,13 @@
 #include "bigint/BigIntegerLibrary.hh"
 
 class fermat_att{
-	int p,q;
+	mpz_t p,q;
 public:
 	void _fermat(mpz_t);
-	int get_p(){
+	mpz_t get_p(){
 		return p;
 	}
-	int get_q(){
+	mpz_t get_q(){
 		return q;
 	}
 };

@@ -3,6 +3,7 @@
 #define CPP_UNIT_RSATESTCASE_H
 
 #include <cppunit/extensions/HelperMacros.h>
+#include "fermat_att.h"
 
 /*
  * A test case that is designed to produce
@@ -17,6 +18,9 @@ class RSATestCase : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( primeTest );
   CPPUNIT_TEST( generateKeyTest );
   CPPUNIT_TEST( decryptTest );
+  CPPUNIT_TEST( power_test );
+  CPPUNIT_TEST( squareroot_test );
+  CPPUNIT_TEST( fermat_test );
   CPPUNIT_TEST_SUITE_END();
 
 protected:
@@ -27,9 +31,15 @@ public:
   void setUp();
 
 protected:
+  //RSA tests
   void primeTest();
   void generateKeyTest();
   void decryptTest();
+  //fermat tests
+  void power_test();
+  void squareroot_test();
+  void fermat_test();
+
   void example();
 };
 
