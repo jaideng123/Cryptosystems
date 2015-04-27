@@ -24,19 +24,14 @@ ostream& operator<<(ostream& os, const Pixel& pix) {
 }
 
 // Basic sample pairs analysis for image Steganography attack
-bool samplePairsAnalysis(string imageOne, string imageTwo) {
-	cimg_library::CImg<unsigned int>* firstImage = new cimg_library::CImg<unsigned int>(imageOne.c_str());
-	cimg_library::CImg<unsigned int>* secondImage = new cimg_library::CImg<unsigned int>(imageTwo.c_str());
+bool samplePairsAnalysis(string imageName) {
+	cimg_library::CImg<unsigned int>* image = new cimg_library::CImg<unsigned int>(imageName.c_str());
 	vector<bool> matches;
 	for(int i = 0; i < image->width(); ++i) {
 		for(int j = 0; j < image->height(); ++j) {
-			unsigned int r_one = firstImage->atXY(i,j,0);
-			unsigned int g_one = firstImage->atXY(i,j,1);
-			unsigned int b_one = firstImage->atXY(i,j,2);
-			unsigned int r_two = secondImage->atXY(i,j,0);
-			unsigned int g_two = secondImage->atXY(i,j,1);
-			unsigned int b_two = secondImage->atXY(i,j,2);
-			r_one = r_one & 1;
+			unsigned int r_one = image->atXY(i,j,0);
+			unsigned int g_one = image->atXY(i,j,1);
+			unsigned int b_one = image->atXY(i,j,2);r_one = r_one & 1;
 			g_one = g_one & 1;
 			b_one = b_one & 1;
 			r_two = r_two & 1;
