@@ -22,8 +22,8 @@ my_size_sign multInv(my_size_sign a, my_size_sign b) {
 
         t = x_0;
 
-        cout << "q * x_0 = " << q*x_0 << endl;
-        cout << "x_1 = " << x_1 << endl;
+        //cout << "q * x_0 = " << q*x_0 << endl;
+        //cout << "x_1 = " << x_1 << endl;
 
         x_0 = (x_1 - (q * x_0));
         x_1 = t;
@@ -62,18 +62,18 @@ vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsi
     my_size p = prime1;
     my_size q = prime2;
 
-    cout << "My Primes: " << p << " & " << q << endl;
+    //cout << "My Primes: " << p << " & " << q << endl;
 
 
     // Compute n = p * q
     my_size n = p * q;
 
-    cout << "Computed n: " << n << endl << flush;
+    //cout << "Computed n: " << n << endl << flush;
 
     // Compute Euler Totient of N
     my_size ETn = (p-1)*(q-1);
 
-    cout << "Computed ET(n): " << ETn << endl << flush;
+    //cout << "Computed ET(n): " << ETn << endl << flush;
 
     my_size e;
 
@@ -92,12 +92,12 @@ vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsi
         }
     }
 
-    cout << "e found: " << e << endl << flush;
+    //cout << "e found: " << e << endl << flush;
 
 
     my_size_sign d = multInv(e, ETn);
 
-    cout << "d found: " << d << endl << flush;
+    //cout << "d found: " << d << endl << flush;
 
     vector<BigInteger> keys;
     BigInteger newN = n;

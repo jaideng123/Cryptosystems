@@ -1,29 +1,37 @@
 #include "fermat_att.h"
 
-void fermat_att::_fermat(mpz_t n){
+void fermat_att::_fermat(mpf_t n){
 	/*TODO:If primes p and q that make up the modulus were created
   		in a way that makes them likely to be close together,
   		and therefore close to sq(n), then n can be factored
   		using Fermat factorization
 	*/
-  	mpz_t k, p, q, test_sqrt, temp;
-  	mpz_init(k);
-  	mpz_init(p);
-  	mpz_init(q);
-  	mpz_init(test_sqrt);
-  	mpz_init(temp);
+  	mpf_t k, p, q, test_sqrt, temp;
+  	mpf_init(k);
+  	mpf_init(p);
+  	mpf_init(q);
+  	mpf_init(test_sqrt);
+  	mpf_init(temp);
 
   	//Sets k to the sqrt(n)
-  	mpz_sqrt(k,n);
+  	mpf_sqrt(k,n);
 
   	while(true){
   		//Makes temp = k*k
-  		mpz_mul(temp, k, k);
-  		test_sqrt = (temp - n);
+  		mpf_mul(temp, k, k);
+  		//temp = temp - n
+  		mpf_sub(temp, temp, n);
+  		mpf_set(test_sqrt, temp);
 
   		if(bigint_test_sqrt(test_sqrt)){
-  			p = k + bigint_sqrt(test_sqrt);
-  			q = k - bigint_sqrt(test_sqrt);
+  			bigint_sqrt(temp, test_sqrt);
+  			//temp = k + temp
+  			mpf_add(temp, temp, k);
+  			mpf_set(p, temp);
+
+  			//temp = k - temp
+  			mpf_sub(temp, k, temp);
+  			mpf_set(q, temp);
   		}
   		k--;
   	}
