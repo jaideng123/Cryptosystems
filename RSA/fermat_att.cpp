@@ -33,7 +33,7 @@ void fermat_att::_fermat(mpf_t n){
   			mpf_sub(temp, k, temp);
   			mpf_set(q, temp);
   		}
-  		k--;
+  		mpf_sub_ui(k, k, 1);
   	}
 
   	//fermat_check()
