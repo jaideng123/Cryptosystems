@@ -1,4 +1,5 @@
-#include "mini-gmp/mini-gmp.h"
+#include "gmp-6.0.0/gmp.h"
+#include "gmp-6.0.0/gmp-impl.h"
 
 //Gets ceiling of 'bigint' after it goes through division
 /*mpf_t bigint_ceil_afterdiv(mpf_t val, int diviser){
@@ -25,55 +26,57 @@ void bigint_sqrt(mpf_t result, const mpf_t val){
         //temp = temp + g
         mpf_add(temp, temp, g);
         //ng = temp/2
-        mpf_div(ng, temp, 2);
+        mpf_div_ui(ng, temp, 2);
         //1 if g > ng, 0 if g == ng, -1 if g < ng
         if (mpf_cmp(g,ng) == 0) break;
-        
+
         mpf_set(g,ng);
     }
-    result = mpf_t((unsigned long)g);
+    mpf_set(result, g);
 	//^Might need BigDec
 
-	do { ++result; } 
-	while(result * result <= val); 
+	do { 
+        mpf_add_ui(result, result, 1);
+        mpf_mul(temp, result, result);
+    }
+    //1 if temp > val, 0 if temp == val, -1 if temp < val
+	while(mpf_cmp(temp,val) == 0 || mpf_cmp(temp,val) < 0); 
 
-	do { --result; }
-	while(result * result > val);
+	do {
+        mpf_sub_ui(result, result, 1);
+        mpf_mul(temp, result, result);
+    }
+	while(mpf_cmp(temp,val) > 0);
 
 }
 
 void bigint_pow(mpf_t result, const mpf_t val, int pow){
-	mpf_t result;
     mpf_init(result);
     mpf_set_ui(result, 1);
 
     if ( pow > 0){
         for (int n = 0; n < pow; n++){
-            result *= val;
+            mpf_mul(result, result, val);
         }
     }
     else{
         for (int n = 0; n > pow; n--){
-            result /= val;
+            mpf_div(result, result, val);
         }
     }
     
 }
 
 bool bigint_test_sqrt(const mpf_t val){
-	if(val < 0) return false;
+	if(mpf_cmp_ui(val,0) < 0) return false;
 
-    mpf_t x;
-    mpf_init(x);
+    mp_size_t x = 1024;
 
-	if((val & 0xF) == 0 ||(val & 0xF) == 1 ||
-       (val & 0xF) == 4 ||(val & 0xF) == 9 )
-    {
-        mpf_sqrt(x, val);
-        return (x*x == val);
-    }
-    else{
-        return false;
+    long val_ui = mpf_get_ui(val);
+
+    //Correct arguments?
+    if(mpn_perfect_square_p(val_ui, x) != 0){
+        return true;
     }
 
 }

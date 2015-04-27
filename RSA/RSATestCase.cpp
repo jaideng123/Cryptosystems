@@ -37,8 +37,8 @@ void RSATestCase::decryptTest(){
 
 
 void RSATestCase::power_test(){
-  std::vector<mpf_t> bg;
-
+  //std::vector<mpf_t> bg;
+  bool two_pow = false, three_pow = false, four_pow = false;
   mpf_t two, three, four, temp;
   mpf_init(two);
   mpf_init(three);
@@ -50,25 +50,28 @@ void RSATestCase::power_test(){
 
   //temp = 2*2
   mpf_mul(temp, two, two);
-  bg.push_back(temp);
+  //bg.push_back(temp);
+  if(mpf_cmp_ui(temp, 4) == 0) two_pow = true;
 
   //temp = 3*3
   mpf_mul(temp, three, three);
-  bg.push_back(temp);
+  //bg.push_back(temp);
+  if(mpf_cmp_ui(temp, 9) == 0) three_pow = true;
 
   //temp = 4*4
   mpf_mul(temp, four, four);
-  bg.push_back(temp);
+  //bg.push_back(temp);
+  if(mpf_cmp_ui(temp, 16) == 0) four_pow = true;
 
   //Check, do I need to use mpf funct to do '==' ?
-  CPPUNIT_ASSERT(bg[0] == 4);
-  CPPUNIT_ASSERT(bg[1] == 9);
-  CPPUNIT_ASSERT(bg[2] == 16);
+  CPPUNIT_ASSERT(two_pow);
+  CPPUNIT_ASSERT(three_pow);
+  CPPUNIT_ASSERT(four_pow);
 }
 
 void RSATestCase::squareroot_test(){
-    std::vector<mpf_t> bg;
-
+  //std::vector<mpf_t> bg;
+  bool four_sqrt = false, nine_sqrt = false, sixteen_sqrt = false;
   mpf_t four, nine, sixteen, temp;
   mpf_init(four);
   mpf_init(nine);
@@ -80,24 +83,31 @@ void RSATestCase::squareroot_test(){
 
   //Sets temp to the sqrt(four)
   mpf_sqrt(temp,four);
-  bg.push_back(temp);
+  //bg.push_back(temp);
+  if(mpf_cmp_ui(temp, 2) == 0) four_sqrt = true;
+
 
   //Sets temp to the sqrt(nine)
   mpf_sqrt(temp,nine);
-  bg.push_back(temp);
+  //bg.push_back(temp);
+  if(mpf_cmp_ui(temp, 3) == 0) nine_sqrt = true;
 
   //Sets temp to the sqrt(sixteen)
   mpf_sqrt(temp,sixteen);
-  bg.push_back(temp);
+  //bg.push_back(temp);
+  if(mpf_cmp_ui(temp, 4) == 0) sixteen_sqrt = true;
 
-  CPPUNIT_ASSERT(bg[0] == 2);
-  CPPUNIT_ASSERT(bg[1] == 3);
-  CPPUNIT_ASSERT(bg[2] == 4);
+  CPPUNIT_ASSERT(four_sqrt);
+  CPPUNIT_ASSERT(nine_sqrt);
+  CPPUNIT_ASSERT(sixteen_sqrt);
 }
 
 void RSATestCase::fermat_test(){
   fermat_att f;
-  f._fermat(26504551);
+  mpf_t x;
+  mpf_init(x);
+  mpf_set_ui(x, 26504551);
+  f._fermat(x);
 
   mpf_t p,q;
   mpf_init(p);
@@ -105,8 +115,8 @@ void RSATestCase::fermat_test(){
   mpf_set_ui(p, 8597);
   mpf_set_ui(q, 3083);
 
-  CPPUNIT_ASSERT(f.get_p() == 8597);
-  CPPUNIT_ASSERT(f.get_q() == 3083);
+  CPPUNIT_ASSERT(mpf_cmp(f.MPF_p, p));
+  CPPUNIT_ASSERT(mpf_cmp(f.MPF_q, q));
 }
 
 void RSATestCase::setUp(){

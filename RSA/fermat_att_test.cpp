@@ -34,9 +34,9 @@ void fermat_att_test::power_test(){
 	bg.push_back(temp);
 
 	//Check, do I need to use mpf funct to do '==' ?
-	CPPUNIT_ASSERT(bg[0] == 4);
-	CPPUNIT_ASSERT(bg[1] == 9);
-	CPPUNIT_ASSERT(bg[2] == 16);
+	CPPUNIT_ASSERT(*bg[0] == 4);
+	CPPUNIT_ASSERT(*bg[1] == 9);
+	CPPUNIT_ASSERT(*bg[2] == 16);
 }
 
 void fermat_att_test::squareroot_test(){
@@ -63,9 +63,9 @@ void fermat_att_test::squareroot_test(){
   	mpf_sqrt(temp,sixteen);
 	bg.push_back(temp);
 
-	CPPUNIT_ASSERT(bg[0] == 2);
-	CPPUNIT_ASSERT(bg[1] == 3);
-	CPPUNIT_ASSERT(bg[2] == 4);
+	CPPUNIT_ASSERT(*bg[0] == 2);
+	CPPUNIT_ASSERT(*bg[1] == 3);
+	CPPUNIT_ASSERT(*bg[2] == 4);
 }
 
 void fermat_att_test::fermat_test(){
@@ -78,8 +78,8 @@ void fermat_att_test::fermat_test(){
 	mpf_set_ui(p, 8597);
 	mpf_set_ui(q, 3083);
 
-	CPPUNIT_ASSERT(f.get_p() == 8597);
-	CPPUNIT_ASSERT(f.get_q() == 3083);
+	CPPUNIT_ASSERT(mpf_cmp(f.MPF_p, p));
+	CPPUNIT_ASSERT(mpf_cmp(f.MPF_q, q));
 }
 
 void fermat_att_test::setUp(){
