@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 			cout<< "\nMessage embedded in " << optarg<< endl;
 			break;
 		case 'b': //extractingLSB1
-			cout<<"Extracting data from ";
+			cout<<"Extracting data from: "<< optarg;
 			cout<< "Message Extracted: " << embedAndExtract.extract(optarg) << endl;
 			break;
 		case 'c': //first attack old stego

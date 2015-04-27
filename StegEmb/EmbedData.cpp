@@ -93,7 +93,7 @@ string EmbedData::embedInBits(string imageName, string message)
 			}
 		}
 	}
-	string embeddedName = "EmbeddedPic.bmp";
+	string embeddedName = "TotallyNotSecretMessage.bmp";
 	image.save(embeddedName.c_str());
 	return embeddedName;
 }
