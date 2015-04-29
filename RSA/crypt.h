@@ -10,6 +10,6 @@ bool fermat(BigUnsigned p, int iterations);
 bool miller_rabin(BigUnsigned p,int iterations);
 
 string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n);
-string decrypt_file(BigUnsigned d, BigUnsigned n, string file_name);
+string decrypt(BigUnsigned d, BigUnsigned n, string ciphertext);
 
 BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n);

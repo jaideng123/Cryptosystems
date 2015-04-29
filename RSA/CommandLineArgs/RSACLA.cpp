@@ -13,9 +13,6 @@ void setUpMain(int argc, char **argv){
 			{"gp",   no_argument, 		0, 'a'}, //generate prime number
 			{"pubk", no_argument, 		0, 'b'}, //generate public key
 			{"prik", no_argument, 		0, 'c'}, //generate private key
-			{"rfa",  no_argument, 		0, 'd'}, //RSA first attack
-			{"rsa",  no_argument, 		0, 'e'}, //RSA second attack
-			{"rta",  no_argument, 		0, 'f'}, //RSA third attack
 			{0, 0, 0, 0}
 		};
 		// getopt_long stores the option index here
@@ -41,16 +38,7 @@ void setUpMain(int argc, char **argv){
 			
 			break;
 		case 'c': //private key
-			
-			break;
-		case 'd': //first attack
-			
-			break;
-		case 'e': //second attack
-			
-			break;
-		case 'f': //third attack
-			
+
 			break;
 		case '?':
 			//getopt_long already prints error messages

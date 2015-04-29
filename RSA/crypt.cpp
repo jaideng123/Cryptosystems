@@ -33,25 +33,15 @@ string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n) {
     return str;
 }
 
-//decrypts a file in blocks, no output file = output to screen
-string decrypt_file(BigUnsigned d, BigUnsigned n,string file_name){
+//decrypts a file in blocks
+string decrypt_blocks(BigUnsigned d, BigUnsigned n,string ciphertext){
     string result;
     string current;
-    ifstream myfile(file_name.c_str());
-    if (myfile.is_open())
-    {
-        while (getline(myfile,current)){
-            BigUnsigned c = stringToBigUnsigned(current);
-            result += decrypt(c,d,n);
-        }
-        myfile.close();
-    }
-    else{
-        cout<<"Error: Could not open file"<<endl;
-        return "";
-    }
+    
+    BigUnsigned c = stringToBigUnsigned(current);
+    result += decrypt(c,d,n);
+	
     return result;
-
 }
 BigUnsigned generate_prime(int bit_length){
     BigUnsigned result;
