@@ -72,10 +72,10 @@ bool bigint_test_sqrt(const mpf_t val){
 
     mp_size_t x = 1024;
 
-    long val_ui = mpf_get_ui(val);
+    long unsigned int val_ui = mpf_get_ui(val);
 
     //Correct arguments?
-    if(mpn_perfect_square_p(val_ui, x) != 0){
+    if(mpn_perfect_square_p(&val_ui, x) != 0){
         return true;
     }
 

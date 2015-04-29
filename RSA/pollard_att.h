@@ -1,14 +1,9 @@
-#include "bigint/BigIntgerLibrary.hh"
+#include "bigint/BigIntegerLibrary.hh"
 #include "math_function.h"
-#include "crypt.h"
 
-void pollards(){
-  /*TODO:If either p-1 or q-1 have only small prime factors,
-      then n can be factored using Pollard's p-1 alg
-    */
-
-
-}
-
-
-void poll_attack();
+class pollard_att{
+public:
+	mpf_t MPF_p, MPF_q;
+	
+	void _pollard(mpf_t);
+};
