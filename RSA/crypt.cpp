@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "base64.h"
 
 BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
     BigUnsigned m = 0;
@@ -68,6 +69,17 @@ BigUnsigned get_randint(int bit_length){
     BigUnsigned value = num;
     return value;
 }
+//return a bigunsigned from a base 64 string
+BigUnsigned from_base_64(string num){
+	string result = base64_encode((const unsigned char*)num.c_str(), num.length()+1);
+	return stringToBigUnsigned(num);
+}
+//return a base 64 string from a big unsigned
+string to_base_64(BigUnsigned num){
+	string original = bigUnsignedToString(num);
+	return base64_decode(original);
+}
+
 //for getting modulus of a very large number
 BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod){
     BigUnsigned x = 1;
@@ -84,15 +96,15 @@ BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod){
 }
 //let's not put these functions in library files
 //only handles positive numbers
-    BigUnsigned pow(BigUnsigned x, BigUnsigned y){
-        if (y == 0)
-            return 1;
-        BigUnsigned value = x;
-        for(BigUnsigned i = 0; i < y-1;++i){
-            x = x*value;
-        }
-        return x;
+BigUnsigned pow(BigUnsigned x, BigUnsigned y){
+    if (y == 0)
+        return 1;
+    BigUnsigned value = x;
+    for(BigUnsigned i = 0; i < y-1;++i){
+        x = x*value;
     }
+    return x;
+}
 //return true if number passes fermat test
     bool fermat(BigUnsigned p, int iterations){
         if(p == 1)
