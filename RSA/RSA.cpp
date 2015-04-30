@@ -15,23 +15,39 @@ int main(int argc, char* argv[]){
 	}
 	if(argc > 0){
 		//enc/dec/genkey e/d n -i/-f filename -o/-f filename
-		if(argv[1] == "enc"){
+		if(!strcmp(argv[1], "enc")){
 			BigUnsigned e = from_base_64(argv[2]);
 			BigUnsigned n = from_base_64(argv[3]);
 			if(argv[4] == "-f"){
 				return 0;
 			}
-			else if(argv[4] == "-i"){
+			else if(!strcmp(argv[4], "-i")){
 				cout<<"Please Input the clear text: \n";
 				string get;
 				getline(cin,get);
+				//cin>>get;
 				string enc = encrypt_blocks(get,e,n);
-				if(argv[5] == "-o"){
+				if(!strcmp(argv[5], "-o")){
 					cout<<"Here is your ciphertext: \n"<<enc;
 				}
 			}
 		}
-		else if(argv[1] == "dec"){
+		else if(!strcmp(argv[1], "dec")){
+			BigUnsigned d = from_base_64(argv[2]);
+			BigUnsigned n = from_base_64(argv[3]);
+			if(argv[4] == "-f"){
+				return 0;
+			}
+			else if(!strcmp(argv[4], "-i")){
+				cout<<"Please Input the cipher text: \n";
+				string get;
+				getline(cin,get);
+				//cin>>get;
+				string enc = decrypt_blocks(d,n,get);
+				if(!strcmp(argv[5], "-o")){
+					cout<<"Here is your clear text: \n"<<enc;
+				}
+			}
 		
 		}
 		else if(!strcmp(argv[1], "genkey")){

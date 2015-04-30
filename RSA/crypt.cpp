@@ -11,10 +11,11 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
     BigUnsigned m = 0;
 
     while(message.size() > 0) {
-        BigUnsigned letter = message.back();
-        m &= letter;
+        BigUnsigned letter = (unsigned int)message.back();
+        m |= letter;
 
         m = m << 8;
+		message = message.substr(0, message.size()-1);
     }
 
     return modulo(m, e, n);
@@ -23,13 +24,15 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
 string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
     string current;
 	for(int i = 0; i < message.size();++i){
-		string m = message[i] + "";
+		string m;
+		m += message[i];
 		BigUnsigned r = encrypt(m,e,n);
 		current+= bigUnsignedToString(r);
-		if(i % 5 == 0)
+		if(i % 5 == 0 && i != 0)
 			current+="\n";
 		else
 			current+= " ";
+		m = "";
 	}
     return current;
 }
@@ -93,7 +96,8 @@ BigUnsigned get_randint(int bit_length){
 //return a bigunsigned from a base 64 string
 BigUnsigned from_base_64(string num){
 	string result = base64_decode(num);
-	return stringToBigUnsigned(num);
+	BigUnsigned r = stringToBigUnsigned(result.c_str());
+	return r;
 }
 //return a base 64 string from a big unsigned
 string to_base_64(BigUnsigned num){
