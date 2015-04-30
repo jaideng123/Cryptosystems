@@ -37,9 +37,9 @@ int main(int argc, char* argv[]){
 		else if(!strcmp(argv[1], "genkey")){
 			int size = atoi(argv[2]);
 			vector<BigUnsigned> result = generate_keys(generate_prime(size), generate_prime(size),0);
-			cout<<"Public Key: "<<result[2];
-			cout<<"Private Key: "<<result[1];
-			cout<<"N: "<<result[0];
+			cout<<"Public Key: "<<to_base_64(result[2])<<endl;
+			cout<<"Private Key: "<<to_base_64(result[1])<<endl;
+			cout<<"N: "<<to_base_64(result[0])<<endl;
 			
 		}
 	}

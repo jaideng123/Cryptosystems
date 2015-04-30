@@ -92,13 +92,13 @@ BigUnsigned get_randint(int bit_length){
 }
 //return a bigunsigned from a base 64 string
 BigUnsigned from_base_64(string num){
-	string result = base64_encode((const unsigned char*)num.c_str(), num.length()+1);
+	string result = base64_decode(num);
 	return stringToBigUnsigned(num);
 }
 //return a base 64 string from a big unsigned
 string to_base_64(BigUnsigned num){
 	string original = bigUnsignedToString(num);
-	return base64_decode(original);
+	return base64_encode((const unsigned char*)original.c_str(), original.length()+1);
 }
 
 //for getting modulus of a very large number
