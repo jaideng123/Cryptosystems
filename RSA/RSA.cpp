@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
 				string get;
 				getline(cin,get);
 				//cin>>get;
-				string enc = encrypt_blocks(get,e,n);
+				string enc = bigUnsignedToString(encrypt(get,e,n));
 				if(!strcmp(argv[5], "-o")){
 					cout<<"Here is your ciphertext: \n"<<enc;
 				}

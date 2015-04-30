@@ -11,11 +11,12 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
     BigUnsigned m = 0;
 
     while(message.size() > 0) {
-        BigUnsigned letter = (unsigned int)message.back();
-        m |= letter;
-
-        m = m << 8;
+		char c = message.back();
+        BigUnsigned letter = (int)c;
+        m = m |( letter & 255);
 		message = message.substr(0, message.size()-1);
+		if(message.size() != 0)
+			m = m << 8;
     }
 
     return modulo(m, e, n);
@@ -39,6 +40,7 @@ string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
 
 string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
     BigUnsigned m = modulo(c,d,n);
+	cout<<m<<endl;
     string str;
     while(true){
         BigUnsigned letter = m & 255;
