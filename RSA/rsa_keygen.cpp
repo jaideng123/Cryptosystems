@@ -55,7 +55,7 @@ my_size encode(my_size message, my_size n, my_size e) {
     return result % n;
 }
 
-vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE)
+vector<BigUnsigned> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE)
 {
     srand(time(NULL));
 
@@ -99,11 +99,12 @@ vector<BigInteger> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsi
 
     //cout << "d found: " << d << endl << flush;
 
-    vector<BigInteger> keys;
-    BigInteger newN = n;
+    vector<BigUnsigned> keys;
+    BigUnsigned newN = stringToBigUnsigned(bigIntegerToString(n));
 
     keys.push_back(newN);
-    keys.push_back(d);
+    keys.push_back(stringToBigUnsigned(bigIntegerToString(d)));
+	keys.push_back(e);
 
     return keys;
 }

@@ -9,7 +9,11 @@ BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod);
 bool fermat(BigUnsigned p, int iterations);
 bool miller_rabin(BigUnsigned p,int iterations);
 
+BigUnsigned from_base_64(string num);
+string to_base_64(BigUnsigned num);
+
 string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n);
-string decrypt(BigUnsigned d, BigUnsigned n, string ciphertext);
+string decrypt_blocks(BigUnsigned d, BigUnsigned n, string ciphertext);
 
 BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n);
+string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n);

@@ -19,8 +19,22 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
 
     return modulo(m, e, n);
 }
+//encrypt string to blocks
+string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
+    string current;
+	for(int i = 0; i < message.size();++i){
+		string m = message[i] + "";
+		BigUnsigned r = encrypt(m,e,n);
+		current+= bigUnsignedToString(r);
+		if(i % 5 == 0)
+			current+="\n";
+		else
+			current+= " ";
+	}
+    return current;
+}
 
-string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n) {
+string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
     BigUnsigned m = modulo(c,d,n);
     string str;
     while(true){
@@ -34,14 +48,21 @@ string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n) {
     return str;
 }
 
-//decrypts a file in blocks
+//decrypts string in blocks
 string decrypt_blocks(BigUnsigned d, BigUnsigned n,string ciphertext){
     string result;
     string current;
-    
-    BigUnsigned c = stringToBigUnsigned(current);
-    result += decrypt(c,d,n);
-	
+	for(int i = 0; i < ciphertext.size();++i){
+		if(isspace(ciphertext[i])){
+			if(current != ""){
+				BigUnsigned c = stringToBigUnsigned(current);
+				result += decrypt(c,d,n);
+				current = "";
+			}
+		}
+		else
+			current+=ciphertext[i];
+	}
     return result;
 }
 BigUnsigned generate_prime(int bit_length){
