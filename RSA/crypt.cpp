@@ -40,7 +40,6 @@ string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
 
 string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
     BigUnsigned m = modulo(c,d,n);
-	cout<<m<<endl;
     string str;
     while(true){
         BigUnsigned letter = m & 255;
@@ -58,9 +57,12 @@ string decrypt_blocks(BigUnsigned d, BigUnsigned n,string ciphertext){
     string result;
     string current;
 	for(int i = 0; i < ciphertext.size();++i){
-		if(isspace(ciphertext[i])){
+		if(isspace(ciphertext[i]) || i == ciphertext.size()-1){
+			if(i == ciphertext.size()-1)
+				current+=ciphertext[i];
 			if(current != ""){
 				BigUnsigned c = stringToBigUnsigned(current);
+				cout<<current<<endl;
 				result += decrypt(c,d,n);
 				current = "";
 			}
