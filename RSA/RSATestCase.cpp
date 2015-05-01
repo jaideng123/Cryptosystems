@@ -119,6 +119,20 @@ void RSATestCase::fermat_test(){
   CPPUNIT_ASSERT(mpf_cmp(f.MPF_q, q));
 }
 
+void RSATestCase::pollards_test(){
+  pollard_att pa;
+  BigUnsigned n = 26504551;
+  pa._pollards(n);
+
+  BigUnsigned p,q;
+  p = 8597;
+  q = 3083;
+
+  CPPUNIT_ASSERT(pa._p == p);
+  CPPUNIT_ASSERT(pa._q == q);
+
+}
+
 void RSATestCase::setUp(){
   m_value1 = 1;
   m_value2 = 1;

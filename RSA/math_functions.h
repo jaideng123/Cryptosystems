@@ -1,6 +1,9 @@
 #include "gmp-6.0.0/gmp.h"
 #include "gmp-6.0.0/gmp-impl.h"
 
+//Open on left mathfunctions.h makefile pollard.h/cpp
+//Open on right fermatatt.h/cpp crypt.cpp RSATestCase.h/cpp
+
 //Gets ceiling of 'bigint' after it goes through division
 /*mpf_t bigint_ceil_afterdiv(mpf_t val, int diviser){
     if(val%diviser == 0){

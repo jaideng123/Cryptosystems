@@ -3,7 +3,7 @@
 
 class pollard_att{
 public:
-	mpf_t MPF_p, MPF_q;
+	BigUnsigned _p, _q;
 	
-	void _pollard(mpf_t);
+	void _pollard(BigUnsigned, BigUnsigned);
 };
