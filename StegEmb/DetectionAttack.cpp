@@ -44,9 +44,6 @@ bool detectionAttack(string imageOneName, string original) {
 	QByteArray md_array_one = hash->hash(image_one->readAll(),QCryptographicHash::Md5);
 	string imageOne_md = QString(md_array_one.toHex()).toStdString();
 	lowerCase(imageOne_md);
-	string tester = "HEX: ";
-	lowerCase(tester);
-	cout << endl << tester << imageOne_md << endl;
 	if (md_comp) {
 		if (imageOne_md == original) return false;
 	}
@@ -56,6 +53,7 @@ bool detectionAttack(string imageOneName, string original) {
 		QByteArray md_array_two = hash->hash(image_one->readAll(),QCryptographicHash::Md5);
 		string imageTwo_md = QString(md_array_two.toHex()).toStdString();
 		lowerCase(imageTwo_md);
+	cout << endl << imageOne_md << endl << imageTwo_md << endl;
 		if (imageOne_md == imageTwo_md) return false;
 	}
 	return true;
@@ -63,7 +61,8 @@ bool detectionAttack(string imageOneName, string original) {
 
 
 int main() {
-	if (detectionAttack("lena512.bmp","TotallyNotSecretMessage.bmp"))
+	if (detectionAttack("lena512.bmp","lena512.bmp"))
 		cout << "PICTURE HAS SECRETS!" << endl;
+	else cout << "NO PICTURE SECRETS!" << endl;
 	return 0;
 }
