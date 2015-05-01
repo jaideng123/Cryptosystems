@@ -50,7 +50,7 @@ bool detectionAttack(string imageOneName, string original) {
 	else {
 		QFile* image_two = new QFile(original.c_str());
 		image_two->open(QIODevice::ReadOnly);
-		QByteArray md_array_two = hash->hash(image_one->readAll(),QCryptographicHash::Md5);
+		QByteArray md_array_two = hash->hash(image_two->readAll(),QCryptographicHash::Md5);
 		string imageTwo_md = QString(md_array_two.toHex()).toStdString();
 		lowerCase(imageTwo_md);
 	cout << endl << imageOne_md << endl << imageTwo_md << endl;
