@@ -1,3 +1,4 @@
+// Compile command: g++ -std=c++11 DetectionAttack.cpp -I/usr/include/QtGui -lQtGui
 #include <QtGui>
 #include <vector>
 #include <string>
@@ -61,7 +62,7 @@ bool detectionAttack(string imageOneName, string original) {
 
 
 int main() {
-	if (detectionAttack("lena512.bmp","lena512.bmp"))
+	if (detectionAttack("lena512.bmp","TotallyNotSecretMessage.bmp"))
 		cout << "PICTURE HAS SECRETS!" << endl;
 	else cout << "NO PICTURE SECRETS!" << endl;
 	return 0;
