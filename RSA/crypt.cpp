@@ -62,7 +62,6 @@ string decrypt_blocks(BigUnsigned d, BigUnsigned n,string ciphertext){
 				current+=ciphertext[i];
 			if(current != ""){
 				BigUnsigned c = stringToBigUnsigned(current);
-				cout<<current<<endl;
 				result += decrypt(c,d,n);
 				current = "";
 			}
