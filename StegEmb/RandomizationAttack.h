@@ -8,6 +8,7 @@
 #include <fstream>
 #include <bitset>
 #include <stdlib.h>
+#include <QtGui>
 
 using namespace std;
 using namespace cimg_library;
@@ -20,6 +21,8 @@ class RandomizationAttack
 		RandomizationAttack();
 		RandomizationAttack(string stegFil);
 		void randomizeBits(string stegFil);
+		bool detectionAttack(string imageOneName, string original);
+		void RandomizationAttack::lowerCase(string& str);
 };
 
 #endif
