@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 			cout<<"Message extracted after attack: " << embedAndExtract.extract(optarg) << endl;
 			break;
 		case 'd': //second attack old stego
-			if (attackOne.detectionAttack("lena512.bmp","TotallyNotSecretMessage.bmp"))
+			if (detectionAttack("lena512.bmp","TotallyNotSecretMessage.bmp"))
 				cout << "PICTURE HAS SECRETS!" << endl;
 			else 
 				cout << "NO PICTURE SECRETS!" << endl;
