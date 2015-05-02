@@ -2,6 +2,8 @@
 #include <string>
 #include <QtGui>
 
+using namespace std;
+
 void lowerCase(string& str);
 
 // Basic detection attack. First argument takes name of image to attck. Second
