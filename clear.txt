@@ -1,2 +1,0 @@
-This is my cleartext to test 
-the munchkincrpyt system
