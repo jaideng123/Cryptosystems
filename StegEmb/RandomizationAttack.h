@@ -20,8 +20,6 @@ class RandomizationAttack
 		RandomizationAttack();
 		RandomizationAttack(string stegFil);
 		void randomizeBits(string stegFil);
-		bool detectionAttack(string imageOneName, string original);
-		void lowerCase(string& str);
 };
 
 #endif

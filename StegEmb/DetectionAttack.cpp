@@ -1,8 +1,7 @@
-#include "RandomizationAttack.h"
-#include <QtGui>
+#include "DetectionAttack.h"
 
 
-void RandomizationAttack::lowerCase(string& str) {
+void lowerCase(string& str) {
 	for (int i = 0; i < str.length(); ++i) {
 		if (str[i] >= 65 && str[i] <= 90) {
 			str[i] = static_cast<char>(str[i] + ' ');
@@ -13,7 +12,7 @@ void RandomizationAttack::lowerCase(string& str) {
 // Basic detection attack. First argument takes name of image to attck. Second
 // argument takes original image name, or original image md5 as a string
 // Returns true if the image contains hidden data
-bool RandomizationAttack::detectionAttack(string imageOneName, string original) {
+bool detectionAttack(string imageOneName, string original) {
 	bool md_comp = false;
 	if (original.find_first_not_of("0123456789ABCDEFabcdef") == -1 && original.length() == 32) {
 		md_comp = true;
