@@ -30,7 +30,7 @@ string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
 		BigUnsigned r = encrypt(m,e,n);
 		current+= bigUnsignedToString(r);
 		if(i % 5 == 0 && i != 0)
-			current+="\n ";
+			current+="\n";
 		else
 			current+= " ";
 		m = "";

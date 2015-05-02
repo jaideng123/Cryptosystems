@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
 					string line;
 					while ( getline (myfile,line) )
 					{
-						cleartext += line;
+						cleartext += line +"\n";
 					}
 					myfile.close();
 				}
@@ -38,6 +38,7 @@ int main(int argc, char* argv[]){
 					return 0;
 				}
 				string enc = encrypt_blocks(cleartext,e,n);
+				cout<<"You encrypted: \n"<<cleartext<<endl;
 				if(!strcmp(argv[6], "-o")){
 					cout<<"Here is your ciphertext: \n"<<enc;
 				}
@@ -89,7 +90,7 @@ int main(int argc, char* argv[]){
 					string line;
 					while ( getline (myfile,line) )
 					{
-						ciphertext += line;
+						ciphertext += line +"\n";
 					}
 					myfile.close();
 				}
@@ -99,7 +100,7 @@ int main(int argc, char* argv[]){
 				}
 				string dec = decrypt_blocks(d,n,ciphertext);
 				if(!strcmp(argv[6], "-o")){
-					cout<<"Here is your cleartext: \n ";
+					cout<<"Here is your cleartext: \n";
 					for(char c : dec)
 						cout<<c;
 				}

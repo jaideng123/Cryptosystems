@@ -1,2 +1,1 @@
-This is my cleartext to test 
-the munchkincrpyt system
+This is my cleartext to test the munchkincrpyt system
