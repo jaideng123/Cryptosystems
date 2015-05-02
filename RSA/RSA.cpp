@@ -19,8 +19,40 @@ int main(int argc, char* argv[]){
 		if(!strcmp(argv[1], "enc")){
 			BigUnsigned e = from_base_64(argv[2]);
 			BigUnsigned n = from_base_64(argv[3]);
-			if(argv[4] == "-f"){
-				return 0;
+			if(!strcmp(argv[4], "-f")){
+				string filename = argv[5];
+				ifstream myfile;
+				myfile.open(filename);
+				string cleartext;
+				if (myfile.is_open())
+				{
+					string line;
+					while ( getline (myfile,line) )
+					{
+						cleartext += line;
+					}
+					myfile.close();
+				}
+				else{
+					cout<<"Error Opening File! \n";
+					return 0;
+				}
+				string enc = encrypt_blocks(cleartext,e,n);
+				if(!strcmp(argv[6], "-o")){
+					cout<<"Here is your ciphertext: \n"<<enc;
+				}
+				else if(!strcmp(argv[6], "-f")){
+					ofstream myfile (argv[7]);
+					if (myfile.is_open())
+					{
+						myfile << enc;
+						myfile.close();
+					}
+					else{
+						cout<<"Error Opening File! \n";
+						return 0;
+					}
+				}
 			}
 			else if(!strcmp(argv[4], "-i")){
 				cout<<"Please Input the clear text: \n";
@@ -29,6 +61,18 @@ int main(int argc, char* argv[]){
 				string enc = encrypt_blocks(get,e,n);
 				if(!strcmp(argv[5], "-o")){
 					cout<<"Here is your ciphertext: \n"<<enc;
+				}
+				else if(!strcmp(argv[5], "-f")){
+					ofstream myfile (argv[7]);
+					if (myfile.is_open())
+					{
+						myfile << enc;
+						myfile.close();
+					}
+					else{
+						cout<<"Error Opening File! \n";
+						return 0;
+					}
 				}
 			}
 		}
