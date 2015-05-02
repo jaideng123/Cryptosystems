@@ -30,7 +30,7 @@ string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
 		BigUnsigned r = encrypt(m,e,n);
 		current+= bigUnsignedToString(r);
 		if(i % 5 == 0 && i != 0)
-			current+="\n";
+			current+="\n ";
 		else
 			current+= " ";
 		m = "";
@@ -58,11 +58,12 @@ string decrypt_blocks(BigUnsigned d, BigUnsigned n,string ciphertext){
     string current;
 	for(int i = 0; i < ciphertext.size();++i){
 		if(isspace(ciphertext[i]) || i == ciphertext.size()-1){
-			if(i == ciphertext.size()-1)
+			if(i == ciphertext.size()-1 && !isspace(ciphertext[i]))
 				current+=ciphertext[i];
 			if(current != ""){
 				BigUnsigned c = stringToBigUnsigned(current);
-				result += decrypt(c,d,n);
+				current = decrypt(c,d,n);
+				result += current;
 				current = "";
 			}
 		}

@@ -63,7 +63,7 @@ int main(int argc, char* argv[]){
 					cout<<"Here is your ciphertext: \n"<<enc;
 				}
 				else if(!strcmp(argv[5], "-f")){
-					ofstream myfile (argv[7]);
+					ofstream myfile (argv[6]);
 					if (myfile.is_open())
 					{
 						myfile << enc;
@@ -79,8 +79,42 @@ int main(int argc, char* argv[]){
 		else if(!strcmp(argv[1], "dec")){
 			BigUnsigned d = from_base_64(argv[2]);
 			BigUnsigned n = from_base_64(argv[3]);
-			if(argv[4] == "-f"){
-				return 0;
+			if(!strcmp(argv[4], "-f")){
+				string filename = argv[5];
+				ifstream myfile;
+				myfile.open(filename);
+				string ciphertext;
+				if (myfile.is_open())
+				{
+					string line;
+					while ( getline (myfile,line) )
+					{
+						ciphertext += line;
+					}
+					myfile.close();
+				}
+				else{
+					cout<<"Error Opening File! \n";
+					return 0;
+				}
+				string dec = decrypt_blocks(d,n,ciphertext);
+				if(!strcmp(argv[6], "-o")){
+					cout<<"Here is your cleartext: \n ";
+					for(char c : dec)
+						cout<<c;
+				}
+				else if(!strcmp(argv[6], "-f")){
+					ofstream myfile (argv[7]);
+					if (myfile.is_open())
+					{
+						myfile << dec;
+						myfile.close();
+					}
+					else{
+						cout<<"Error Opening File! \n";
+						return 0;
+					}
+				}
 			}
 			else if(!strcmp(argv[4], "-i")){
 				cout<<"Please Input the cipher text: \n";
