@@ -21,7 +21,7 @@ class RandomizationAttack
 		RandomizationAttack(string stegFil);
 		void randomizeBits(string stegFil);
 		bool detectionAttack(string imageOneName, string original);
-		void RandomizationAttack::lowerCase(string& str);
+		void lowerCase(string& str);
 };
 
 #endif
