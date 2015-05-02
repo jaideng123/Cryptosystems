@@ -1,7 +1,6 @@
 #ifndef RANDOMIZATION_ATTACK_H
 #define RANDOMIZATION_ATTACK_H
 
-#include <QtGui>
 #include "../ImageStuff/CImg.h"
 #include <iostream>
 #include <vector>

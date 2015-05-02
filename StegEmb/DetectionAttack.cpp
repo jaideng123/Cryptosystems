@@ -1,4 +1,5 @@
 #include "RandomizationAttack.h"
+#include <QtGui>
 
 
 void RandomizationAttack::lowerCase(string& str) {
