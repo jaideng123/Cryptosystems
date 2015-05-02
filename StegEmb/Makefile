@@ -3,7 +3,7 @@ test:
 toto:
 	g++ -std=c++11 -I/usr/include/QtGui -lQtGui -c DetectionAttack.cpp 
 	g++ -std=c++11 -lpthread -lX11 -c RandomizationAttack.cpp 
-	g++ -std=c++11 -lpthread -lX11 DetectionAttack.o RandomizationAttack.o StegoMain.cpp -o toto
+	g++ -std=c++11 -I/usr/include/QtGui -lpthread -lX11 DetectionAttack.o RandomizationAttack.o StegoMain.cpp -o toto
 path:
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../cppunit/usr/lib
 totoclean:
