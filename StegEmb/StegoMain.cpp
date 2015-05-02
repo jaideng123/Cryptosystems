@@ -1,7 +1,6 @@
 #include "DetectionAttack.h"
 #include "EmbedData.h"
 #include "RandomizationAttack.h"
-#include <QtGui>
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
