@@ -4,11 +4,11 @@ toto:
 	g++ -std=c++11 -I/usr/include/QtGui -lQtGui -c DetectionAttack.cpp 
 	ar rcs DetectionAttack.a DetectionAttack.o
 	g++ -std=c++11 -lpthread -lX11 -c RandomizationAttack.cpp 
-	g++ -std=c++11 -lpthread -lX11 EmbedData.cpp RandomizationAttack.o StegoMain.cpp DetectionAttack.a -o toto
+	g++ -std=c++11 -lpthread -lX11 -lQtGui EmbedData.cpp RandomizationAttack.o StegoMain.cpp DetectionAttack.a -o toto
 path:
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../cppunit/usr/lib
 totoclean:
-	rm toto *.o
+	rm toto *.o *.a
 testclean:
 	rm test
 clean:
