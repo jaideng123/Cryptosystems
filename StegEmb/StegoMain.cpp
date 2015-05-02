@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 			{"lsbem", required_argument, 		0, 'a'}, //embeddingLSB1
 			{"lsbex", required_argument, 		0, 'b'}, //extractingLSB1
 			{"osfa",  required_argument, 		0, 'c'}, //old stego first attack
-			{"ossa",  no_argument, 				0, 'd'}, //old stego second attack
+			{"ossa",  required_argument, 		0, 'd'}, //old stego second attack
 			{"nem",   required_argument, 		0, 'e'}, //embedding in new stego
 			{"nex",   required_argument, 		0, 'f'}, //extracting in new stego
 			{"nfa",   no_argument, 				0, 'g'}, //first attack on new stego
@@ -43,7 +43,6 @@ int main(int argc, char **argv)
 			cout << endl;
 			break;
 		case 'a': //embeddingLSB1
-			//cout<< optarg<< endl;
 			cout<<"Enter a message to embed in " << optarg << ": ";
 			getline(cin, embedMessage);
 			embedAndExtract.embedInBits(optarg, embedMessage);
@@ -55,27 +54,15 @@ int main(int argc, char **argv)
 			break;
 		case 'c': //first attack old stego
 			cout<<"Message extracted before attack: " << embedAndExtract.extract(optarg) << endl;
-			cout<< "\nRANDOMIZE THAT SHIT!!!!!!";
+			cout<< "\nLET'S MAKE A MESS!!!!!!!";
 			attackOne.randomizeBits(optarg);
 			cout<<"Message extracted after attack: " << embedAndExtract.extract(optarg) << endl;
 			break;
 		case 'd': //second attack old stego
-			if (detectionAttack("lena512.bmp","TotallyNotSecretMessage.bmp"))
+			if (detectionAttack(optarg, argv[optind++]))
 				cout << "PICTURE HAS SECRETS!" << endl;
 			else 
 				cout << "NO PICTURE SECRETS!" << endl;
-			break;
-		case 'e': //embedding new stego
-			
-			break;
-		case 'f': //extracting new stego
-
-			break;
-		case 'g': //first attack new stego
-			
-			break;
-		case 'h': //second attack new stego
-			
 			break;
 		case '?':
 			//getopt_long already prints error messages
@@ -85,15 +72,5 @@ int main(int argc, char **argv)
 		}
 	}
 	/* ========================================================== */
-	
-	//Print any remaining command line arguments (not options). */
-	if (optind < argc)
-	{
-		cout << "non-option ARGV-elements: ";
-		while (optind < argc){
-			cout << argv[optind++];
-		}
-		cout << endl;
-	}
 	return 0;
 }
