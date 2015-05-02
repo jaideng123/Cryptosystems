@@ -1,6 +1,5 @@
 #include <vector>
 #include <string>
-#include <QtGui>
 
 using namespace std;
 

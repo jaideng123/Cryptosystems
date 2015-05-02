@@ -1,4 +1,5 @@
 #include "DetectionAttack.h"
+#include <QtGui>
 
 
 void lowerCase(string& str) {
