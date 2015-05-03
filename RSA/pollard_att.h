@@ -1,9 +1,10 @@
-#include "bigint/BigIntegerLibrary.hh"
-//#include "math_function.h"
+#include "crypt.h"
 
 class pollard_att{
 public:
 	BigUnsigned _p, _q;
 	
-	void _pollard(BigUnsigned);
+	void _pollards(BigUnsigned);
+
 };
+

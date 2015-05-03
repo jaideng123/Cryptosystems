@@ -1,5 +1,5 @@
 #include "bigint/BigIntegerLibrary.hh"
-#include "math_function.h"
+#include "math_functions.h"
 #include "crypt.h"
 
 class chinese_rem_att{

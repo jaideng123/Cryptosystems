@@ -14,7 +14,7 @@
     }
 }*/
 
-void bigint_sqrt(mpf_t result, const mpf_t val){  
+inline void bigint_sqrt(mpf_t result, const mpf_t val){  
 	mpf_t g, ng, temp;
     mpf_init(temp);
     mpf_init(g);
@@ -53,7 +53,7 @@ void bigint_sqrt(mpf_t result, const mpf_t val){
 
 }
 
-void bigint_pow(mpf_t result, const mpf_t val, int pow){
+inline void bigint_pow(mpf_t result, const mpf_t val, int pow){
     mpf_init(result);
     mpf_set_ui(result, 1);
 
@@ -70,7 +70,7 @@ void bigint_pow(mpf_t result, const mpf_t val, int pow){
     
 }
 
-bool bigint_test_sqrt(const mpf_t val){
+inline bool bigint_test_sqrt(const mpf_t val){
 	if(mpf_cmp_ui(val,0) < 0) return false;
 
     mp_size_t x = 1024;

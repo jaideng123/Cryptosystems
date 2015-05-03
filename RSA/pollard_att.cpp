@@ -1,4 +1,5 @@
 #include "pollard_att.h"
+#include <iostream>
 
 void pollard_att::_pollards(BigUnsigned n){
   	/*If either p-1 or q-1 have only small prime factors,
@@ -16,9 +17,11 @@ void pollard_att::_pollards(BigUnsigned n){
   	//mpf_set_ui(i, 2);
   	//mpf_set_ui();*/
 
+    //pollard_att p = new pollard_att;
+
     if (n <= 2){
-      cout << "ERROR, N must be > 2";
-      break;
+      std::cout << "ERROR, N must be > 2";
+      return;
     }
 
   	BigUnsigned a = 2;
@@ -35,15 +38,15 @@ void pollard_att::_pollards(BigUnsigned n){
   	}
 
   	if(g <= 1){
-      cout << "p-1 failed, try a larger limit or another method!";
+      std::cout << "p-1 failed, try a larger limit or another method!";
       return;//For-loop failed
     }
 
     //WHAT TA DO HERE, I got p, how do I get q from here?
     //Ask about (p-1)(q-1) = n?
 
-    pollard_att._p = g;
+    this->_p = g;
 
-    pollard_att._q = (n/(g - 1)) + 1;//equivalent to (q-1) + 1;
+    this->_q = (n/(g - 1)) + 1;//equivalent to (q-1) + 1;
 
 }
