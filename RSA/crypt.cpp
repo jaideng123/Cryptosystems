@@ -11,30 +11,31 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
     BigUnsigned m = 0;
 
     while(message.size() > 0) {
-		char c = message.back();
+        char c = message.back();
         BigUnsigned letter = (int)c;
         m = m |( letter & 255);
-		message = message.substr(0, message.size()-1);
-		if(message.size() != 0)
-			m = m << 8;
+        message = message.substr(0, message.size()-1);
+        if(message.size() != 0)
+            m = m << 8;
     }
 
     return modulo(m, e, n);
 }
+
 //encrypt string to blocks
 string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
     string current;
-	for(int i = 0; i < message.size();++i){
-		string m;
-		m += message[i];
-		BigUnsigned r = encrypt(m,e,n);
-		current+= bigUnsignedToString(r);
-		if(i % 5 == 0 && i != 0)
-			current+="\n";
-		else
-			current+= " ";
-		m = "";
-	}
+    for(int i = 0; i < message.size();++i){
+        string m;
+        m += message[i];
+        BigUnsigned r = encrypt(m,e,n);
+        current+= bigUnsignedToString(r);
+        if(i % 5 == 0 && i != 0)
+            current+="\n";
+        else
+            current+= " ";
+        m = "";
+    }
     return current;
 }
 
@@ -56,22 +57,23 @@ string decrypt(BigUnsigned c, BigUnsigned d, BigUnsigned n){
 string decrypt_blocks(BigUnsigned d, BigUnsigned n,string ciphertext){
     string result;
     string current;
-	for(int i = 0; i < ciphertext.size();++i){
-		if(isspace(ciphertext[i]) || i == ciphertext.size()-1){
-			if(i == ciphertext.size()-1 && !isspace(ciphertext[i]))
-				current+=ciphertext[i];
-			if(current != ""){
-				BigUnsigned c = stringToBigUnsigned(current);
-				current = decrypt(c,d,n);
-				result += current;
-				current = "";
-			}
-		}
-		else
-			current+=ciphertext[i];
-	}
+    for(int i = 0; i < ciphertext.size();++i){
+        if(isspace(ciphertext[i]) || i == ciphertext.size()-1){
+            if(i == ciphertext.size()-1 && !isspace(ciphertext[i]))
+                current+=ciphertext[i];
+            if(current != ""){
+                BigUnsigned c = stringToBigUnsigned(current);
+                current = decrypt(c,d,n);
+                result += current;
+                current = "";
+            }
+        }
+        else
+            current+=ciphertext[i];
+    }
     return result;
 }
+
 BigUnsigned generate_prime(int bit_length){
     BigUnsigned result;
     while(true){
@@ -99,14 +101,14 @@ BigUnsigned get_randint(int bit_length){
 }
 //return a bigunsigned from a base 64 string
 BigUnsigned from_base_64(string num){
-	string result = base64_decode(num);
-	BigUnsigned r = stringToBigUnsigned(result.c_str());
-	return r;
+    string result = base64_decode(num);
+    BigUnsigned r = stringToBigUnsigned(result.c_str());
+    return r;
 }
 //return a base 64 string from a big unsigned
 string to_base_64(BigUnsigned num){
-	string original = bigUnsignedToString(num);
-	return base64_encode((const unsigned char*)original.c_str(), original.length()+1);
+    string original = bigUnsignedToString(num);
+    return base64_encode((const unsigned char*)original.c_str(), original.length()+1);
 }
 
 //for getting modulus of a very large number
@@ -125,15 +127,15 @@ BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod){
 }
 //let's not put these functions in library files
 //only handles positive numbers
-BigUnsigned pow(BigUnsigned x, BigUnsigned y){
-    if (y == 0)
-        return 1;
-    BigUnsigned value = x;
-    for(BigUnsigned i = 0; i < y-1;++i){
-        x = x*value;
+    BigUnsigned pow(BigUnsigned x, BigUnsigned y){
+        if (y == 0)
+            return 1;
+        BigUnsigned value = x;
+        for(BigUnsigned i = 0; i < y-1;++i){
+            x = x*value;
+        }
+        return x;
     }
-    return x;
-}
 //return true if number passes fermat test
     bool fermat(BigUnsigned p, int iterations){
         if(p == 1)

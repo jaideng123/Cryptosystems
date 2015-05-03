@@ -10,7 +10,7 @@ munchkincrypt:
 	g++ -std=c++11 RSA/crypt.cpp RSA/RSA.cpp RSA/rsa_keygen.cpp $(bigint-objects) -w -g -o munchkincrypt
 
 brennen:
-	g++ -g RSA/main.cpp RSA/rsa_keygen.cpp $(bigint-objects) -w -o brennen
+	g++ -std=c++11 -g RSA/main.cpp RSA/rsa_keygen.cpp RSA/crypt.cpp $(bigint-objects) -w -o brennen
 
 clean:
 	rm *test munchkincrypt

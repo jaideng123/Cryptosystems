@@ -119,7 +119,7 @@ void RSATestCase::fermat_test(){
   CPPUNIT_ASSERT(mpf_cmp(f.MPF_q, q));
 }
 
-void RSATestCase::pollards_test(){
+void RSATestCase::pollards_test() {
   pollard_att pa;
   BigUnsigned n = 26504551;
   pa._pollards(n);
