@@ -4,8 +4,11 @@
 
 class chinese_rem_att{
 public:
-        mpf_t MPF_p, MPF_q;
+        BigUnsigned _p, _q;
         
-        void _chinese_rem(mpf_t);
+        void _chinese_rem(BigUnsigned);
 
 };
+
+//Will return x, where (a*x) % b == 1
+BigUnsigned mult_inv(BigUnsigned, BigUnsigned);
