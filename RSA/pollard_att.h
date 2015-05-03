@@ -5,5 +5,5 @@ class pollard_att{
 public:
 	BigUnsigned _p, _q;
 	
-	void _pollard(BigUnsigned, BigUnsigned);
+	void _pollard(BigUnsigned);
 };
