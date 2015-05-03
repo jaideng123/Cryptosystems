@@ -3061,7 +3061,7 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for attr_get
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/cco7nEBP.o: In function `main':
+/tmp/ccTVXbyG.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `attr_get'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -3179,7 +3179,7 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for cputime
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/cc0JjCD0.o: In function `main':
+/tmp/cc5k7S6F.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `cputime'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -3306,7 +3306,7 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for getsysinfo
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/ccJvDQX9.o: In function `main':
+/tmp/ccH4pXYZ.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `getsysinfo'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -3455,7 +3455,7 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for processor_info
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/ccte5AaM.o: In function `main':
+/tmp/ccuCJEAC.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `processor_info'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -3580,7 +3580,7 @@ configure: failed program was:
 configure:23780: result: no
 configure:23780: checking for pstat_getprocessor
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/ccXjJjhO.o: In function `main':
+/tmp/ccN5vRvH.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `pstat_getprocessor'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -3709,7 +3709,7 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for read_real_time
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/ccopRweY.o: In function `main':
+/tmp/ccidA59E.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `read_real_time'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -3843,13 +3843,13 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for sigstack
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/cczU8HAc.o: In function `main':
+/tmp/ccrsCg9V.o: In function `main':
 conftest.c:(.text.startup+0x7): warning: the `sigstack' function is dangerous.  `sigaltstack' should be used instead.
 configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for syssgi
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/ccv56hxh.o: In function `main':
+/tmp/ccLH3s80.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `syssgi'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -4009,7 +4009,7 @@ configure:23780: $? = 0
 configure:23780: result: yes
 configure:23780: checking for sysctlbyname
 configure:23780: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c  >&5
-/tmp/ccdGrM9L.o: In function `main':
+/tmp/ccCO3VDC.o: In function `main':
 conftest.c:(.text.startup+0x7): undefined reference to `sysctlbyname'
 collect2: error: ld returned 1 exit status
 configure:23780: $? = 1
@@ -4893,10 +4893,10 @@ configure:26917: checking lex output file root
 configure:26931: result: lex.yy
 configure:26936: checking lex library
 configure:26950: gcc -std=gnu99 -o conftest -O2 -pedantic -fomit-frame-pointer -m64 -mtune=corei7 -march=corei7   conftest.c   >&5
-/tmp/ccoV6o2A.o: In function `yylex':
+/tmp/cc8Ml5or.o: In function `yylex':
 conftest.c:(.text+0xa7b): undefined reference to `yywrap'
 conftest.c:(.text+0xeeb): undefined reference to `yywrap'
-/tmp/ccoV6o2A.o: In function `main':
+/tmp/cc8Ml5or.o: In function `main':
 conftest.c:(.text.startup+0x9): undefined reference to `yywrap'
 collect2: error: ld returned 1 exit status
 configure:26950: $? = 1
@@ -7034,6 +7034,7 @@ config.status:1563: creating demos/calc/Makefile
 config.status:1563: creating demos/expr/Makefile
 config.status:1563: creating gmp.h
 config.status:1563: creating config.h
+config.status:1744: config.h is unchanged
 config.status:1804: linking mpn/x86_64/invert_limb_table.asm to mpn/invert_limb_table.asm
 config.status:1804: linking mpn/generic/add.c to mpn/add.c
 config.status:1804: linking mpn/generic/add_1.c to mpn/add_1.c
