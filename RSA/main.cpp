@@ -5,8 +5,8 @@
 
 int main()
 {
-    BigUnsigned prime1 = generate_prime(8);
-    BigUnsigned prime2 = generate_prime(8);
+    BigUnsigned prime1 = generate_prime(64);
+    BigUnsigned prime2 = generate_prime(64);
 
     cout << "First Prime: " << prime1 << endl;
     cout << "Second Prime: " << prime2 << endl;

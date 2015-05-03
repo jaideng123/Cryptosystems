@@ -18,11 +18,12 @@ class RSATestCase : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( example );
   CPPUNIT_TEST( primeTest );
   CPPUNIT_TEST( generateKeyTest );
+  CPPUNIT_TEST( primesWithGenerate );
   CPPUNIT_TEST( decryptTest );
   CPPUNIT_TEST( power_test );
   CPPUNIT_TEST( squareroot_test );
   CPPUNIT_TEST( fermat_test );
-  CPPUNIT_TEST( pollards_test );
+  //CPPUNIT_TEST( pollards_test );
   CPPUNIT_TEST_SUITE_END();
 
 protected:
@@ -36,12 +37,13 @@ protected:
   //RSA tests
   void primeTest();
   void generateKeyTest();
+  void primesWithGenerate();
   void decryptTest();
   //fermat tests
   void power_test();
   void squareroot_test();
   void fermat_test();
-  void pollards_test();
+  //void pollards_test();
 
   void example();
 };
