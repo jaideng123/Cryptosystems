@@ -7,7 +7,7 @@ Stegotest:
 setuptest:
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:cppunit/usr/lib
 munchkincrypt:
-	g++ -std=c++11 RSA/crypt.cpp RSA/RSA.cpp RSA/rsa_keygen.cpp $(bigint-objects) -w -g -o munchkincrypt
+	g++ -std=c++11 RSA/crypt.cpp RSA/RSA.cpp  $(bigint-objects) -w -g -o munchkincrypt
 
 brennen:
 	g++ -std=c++11 -g RSA/main.cpp RSA/rsa_keygen.cpp RSA/crypt.cpp $(bigint-objects) -w -o brennen

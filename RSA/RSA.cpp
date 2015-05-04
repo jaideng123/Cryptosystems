@@ -4,7 +4,6 @@
 #include <string>
 #include <iomanip>
 #include "crypt.h"
-#include "rsa_keygen.h"
 #include <string.h>
 #include <fstream>
 #include <stdexcept>
@@ -182,9 +181,13 @@ void decoding(string infile,string outfile,string keyfile){
 }
 
 //handles generating of keys
-void gen_keys(int size,string outfile){
+void gen_keys(int size,string outfile,string p1,string p2,string e){
     cout<<"Generating key...\n";
-    vector<BigUnsigned> result = generate_keys(generate_prime(size/2), generate_prime(size/2),0);
+    vector<BigUnsigned> result;
+    if(p1 == "" || p2 == "")
+    	result = generate_keys(generate_prime(size/2), generate_prime(size/2),0);
+    else
+    	result = generate_keys(stringToBigUnsigned(p1), stringToBigUnsigned(p2),stringToBigUnsigned(e));
     if(outfile == ""){
         cout<<"Public Key: "<<to_base_64(result[2])<<endl;
         cout<<"Private Key: "<<to_base_64(result[1])<<endl;
@@ -214,9 +217,12 @@ int main(int argc, char* argv[]){
         string infile;
         string outfile;
         string keyfile;
+        string prime1;
+        string prime2;
+        string e;
         int size = 16;
         char c;
-        while ((c = getopt (argc, argv, "i:o:k:s:")) != -1) {
+        while ((c = getopt (argc, argv, "i:o:k:s:p:q:e:")) != -1) {
             switch(c) {
                 case 'i':
                     infile = optarg;
@@ -230,6 +236,15 @@ int main(int argc, char* argv[]){
                 case 's':
                     size = atoi(optarg);
                     break;
+                case 'p':
+                	prime1 = optarg;
+                	break;
+                case 'q':
+                	prime2 = optarg;
+                	break;
+                case 'e':
+                	e = optarg;
+                	break;
                 default:
                     abort();
             }
@@ -241,7 +256,7 @@ int main(int argc, char* argv[]){
             decoding(infile,outfile,keyfile);
         }
         else if(function == "genkey"){
-            gen_keys(size,outfile);
+            gen_keys(size,outfile,prime1,prime2,e);
         }
     }
     return 0;

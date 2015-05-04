@@ -1,7 +1,13 @@
 //crypt.h file for RSA System functions
 #include "bigint/BigIntegerLibrary.hh"
-#include "rsa_keygen.h"
-
+#include <iostream>
+#include <cstdlib>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+#include <vector>
+#include <string>
+using namespace std;
 BigUnsigned generate_prime(int bit_length);
 BigUnsigned get_randint(int bit_length);
 BigUnsigned pow(BigUnsigned x, BigUnsigned y);
@@ -17,3 +23,5 @@ string decrypt_blocks(BigUnsigned d, BigUnsigned n, string ciphertext);
 
 BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n);
 string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n);
+
+vector<BigUnsigned> generate_keys(BigUnsigned prime1, BigUnsigned prime2, BigUnsigned testE);
