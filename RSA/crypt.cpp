@@ -38,7 +38,7 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
 string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
     string current;
     int density = calc_density(n);
-    int itr = 0;
+    int itr = 1;
     for(int i = 0; i < message.size();){
         string m;
         for(int j = 0; j < density; ++j){
