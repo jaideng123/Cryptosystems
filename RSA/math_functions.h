@@ -77,7 +77,9 @@ inline bool bigint_test_sqrt(const mpf_t val){
 
     long unsigned int val_ui = mpf_get_ui(val);
 
-    //Correct arguments?
+    //if(true) return true;
+
+    //Correct arguments? GETTING SEG FAULT, guess not
     if(mpn_perfect_square_p(&val_ui, x) != 0){
         return true;
     }

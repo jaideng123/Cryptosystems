@@ -118,6 +118,7 @@ void RSATestCase::squareroot_test(){
 }
 
 void RSATestCase::fermat_test(){
+    bool p_bool = false, q_bool = false;
     fermat_att f;
     mpf_t x;
     mpf_init(x);
@@ -130,10 +131,14 @@ void RSATestCase::fermat_test(){
     mpf_set_ui(p, 8597);
     mpf_set_ui(q, 3083);
 
-    CPPUNIT_ASSERT(mpf_cmp(f.MPF_p, p));
-    CPPUNIT_ASSERT(mpf_cmp(f.MPF_q, q));
+    if(mpf_cmp(f.MPF_p, p) == 0) p_bool = true;
+
+    if(mpf_cmp(f.MPF_q, q) == 0) q_bool = true;
+
+    CPPUNIT_ASSERT(p_bool);
+    CPPUNIT_ASSERT(q_bool);
 }
-/*
+
    void RSATestCase::pollards_test() {
    pollard_att pa;
    BigUnsigned n = 26504551;
@@ -146,7 +151,7 @@ void RSATestCase::fermat_test(){
    CPPUNIT_ASSERT(pa._p == p);
    CPPUNIT_ASSERT(pa._q == q);
    }
- */
+ 
 
 void RSATestCase::setUp(){
     m_value1 = 1;

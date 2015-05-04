@@ -7,6 +7,8 @@ void fermat_att::_fermat(mpf_t n){
   		using Fermat factorization
 	*/
   	mpf_t k, p, q, test_sqrt, temp;
+
+    mpf_init(n);
   	mpf_init(k);
   	mpf_init(p);
   	mpf_init(q);
@@ -17,6 +19,7 @@ void fermat_att::_fermat(mpf_t n){
   	mpf_sqrt(k,n);
 
   	while(true){
+      break;//For escaping infinite loop/seg fault
   		//Makes temp = k*k
   		mpf_mul(temp, k, k);
   		//temp = temp - n
@@ -32,9 +35,14 @@ void fermat_att::_fermat(mpf_t n){
   			//temp = k - temp
   			mpf_sub(temp, k, temp);
   			mpf_set(q, temp);
+
+        break;
   		}
   		mpf_sub_ui(k, k, 1);
   	}
+
+    mpf_set(this->MPF_p, p);
+    mpf_set(this->MPF_q, q);
 
   	//fermat_check()
   	

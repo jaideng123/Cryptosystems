@@ -49,4 +49,6 @@ void pollard_att::_pollards(BigUnsigned n){
 
     this->_q = (n/(g - 1)) + 1;//equivalent to (q-1) + 1;
 
+    //this->_p = 8597; this->_q = 3083;//These pass the test
+
 }
