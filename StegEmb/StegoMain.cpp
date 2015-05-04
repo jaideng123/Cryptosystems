@@ -53,10 +53,8 @@ int main(int argc, char **argv)
 			cout<< "Message Extracted: " << embedAndExtract.extract(optarg) << endl;
 			break;
 		case 'c': //first attack old stego
-			cout<<"Message extracted before attack: " << embedAndExtract.extract(optarg) << endl;
-			cout<< "\nLET'S MAKE A MESS!!!!!!!";
+			cout<< "\nLET'S MAKE A MESS!!!!!!!"<<endl;
 			attackOne.randomizeBits(optarg);
-			cout<<"Message extracted after attack: " << embedAndExtract.extract(optarg) << endl;
 			break;
 		case 'd': //second attack old stego
 			if (detectionAttack(optarg, argv[optind++]))
