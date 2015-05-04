@@ -6,7 +6,7 @@ class chinese_rem_att{
 public:
         BigUnsigned _p, _q;
         
-        void _chinese_rem(BigUnsigned);
+        void _chinese_rem(BigUnsigned[], BigUnsigned[], int);
 
 };
 
