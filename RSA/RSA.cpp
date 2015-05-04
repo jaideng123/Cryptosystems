@@ -7,6 +7,11 @@
 #include "rsa_keygen.h"
 #include <string.h>
 #include <fstream>
+#include <stdexcept>
+
+using namespace std;
+
+//pulls the n value out of file or prompts user to input it
 string get_nkey(string keyfile){
 	string key;
 	if(keyfile == ""){
@@ -26,13 +31,13 @@ string get_nkey(string keyfile){
 			}
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return "";
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	return key;
 }
+
+//pulls the private key value out of file or prompts user to input it
 string  get_private_key(string keyfile){
 	string key;
 	if(keyfile == ""){
@@ -52,13 +57,13 @@ string  get_private_key(string keyfile){
 			}
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return "";
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	return key;
 }
+
+//pulls the public key value out of file or prompts user to input it
 string  get_public_key(string keyfile){
 	string key;
 	if(keyfile == ""){
@@ -78,19 +83,22 @@ string  get_public_key(string keyfile){
 			}
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return "";
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	return key;
 }
-//handles encoding from command line args
+
+//handles encoding
 void encoding(string infile,string outfile,string keyfile){
 	BigUnsigned e = from_base_64(get_public_key(keyfile).c_str());
 	BigUnsigned n = from_base_64(get_nkey(keyfile).c_str());
+	if(e == 0 || n == 0)
+		throw runtime_error("Bed Key Values!");
 	string cleartext;
+
 	if(infile != ""){
+		//extract cleartext from file
 		ifstream myfile;
 		myfile.open(infile);
 		if (myfile.is_open())
@@ -102,16 +110,16 @@ void encoding(string infile,string outfile,string keyfile){
 			}
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return;
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	else{
 		cout<<"Please Input the clear text: \n";
 		getline(cin,cleartext);
 	}
+
 	string enc = encrypt_blocks(cleartext,e,n);
+
 	if(outfile != ""){
 		ofstream myfile (outfile);
 		if (myfile.is_open())
@@ -119,22 +127,23 @@ void encoding(string infile,string outfile,string keyfile){
 			myfile << enc;
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return;
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	else{
 		cout<<"Here is your ciphertext: \n"<<enc;
 	}
 }
 
-//handles decoding from command line args
+//handles decoding
 void decoding(string infile,string outfile,string keyfile){
 	BigUnsigned d = from_base_64(get_private_key(keyfile).c_str());
 	BigUnsigned n = from_base_64(get_nkey(keyfile).c_str());
+	if(d == 0 || n == 0)
+		throw runtime_error("Bed Key Values!");
 	string ciphertext;
 	if(infile != ""){
+		//extract ciphertext from file
 		ifstream myfile;
 		myfile.open(infile);
 		if (myfile.is_open())
@@ -146,16 +155,16 @@ void decoding(string infile,string outfile,string keyfile){
 			}
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return;
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	else{
 		cout<<"Please Input the cipher text: \n";
 		getline(cin,ciphertext);
 	}
+
 	string dec = decrypt_blocks(d,n,ciphertext);
+
 	if(outfile != ""){
 		ofstream myfile (outfile);
 		if (myfile.is_open())
@@ -163,15 +172,35 @@ void decoding(string infile,string outfile,string keyfile){
 			myfile << dec;
 			myfile.close();
 		}
-		else{
-			cout<<"Error Opening File! \n";
-			return;
-		}
+		else
+			throw runtime_error("Error Opening File!");
 	}
 	else{
 		cout<<"Here is your cleartext: \n"<<dec;
 	}
 	return;
+}
+
+//handles generating of keys
+void gen_keys(int size,string outfile){
+	cout<<"Generating key...\n";
+	vector<BigUnsigned> result = generate_keys(generate_prime(size/2), generate_prime(size/2),0);
+	if(outfile == ""){
+		cout<<"Public Key: "<<to_base_64(result[2])<<endl;
+		cout<<"Private Key: "<<to_base_64(result[1])<<endl;
+		cout<<"N: "<<to_base_64(result[0])<<endl;
+	}
+	else{
+		ofstream myfile;
+		myfile.open (outfile+".key", ios::trunc);
+		if (myfile.is_open()){
+			myfile<<"Public Key: "<<to_base_64(result[2])<<endl;
+			myfile<<"Private Key: "<<to_base_64(result[1])<<endl;
+			myfile<<"N: "<<to_base_64(result[0])<<endl;
+		}
+		else
+			throw runtime_error("Error Opening File!");
+	}
 }
 
 int main(int argc, char* argv[]){
@@ -212,21 +241,7 @@ int main(int argc, char* argv[]){
 			decoding(infile,outfile,keyfile);
 		}
 		else if(function == "genkey"){
-			cout<<"Generating key...\n";
-			vector<BigUnsigned> result = generate_keys(generate_prime(size/2), generate_prime(size/2),0);
-			if(outfile == ""){
-				cout<<"Public Key: "<<to_base_64(result[2])<<endl;
-				cout<<"Private Key: "<<to_base_64(result[1])<<endl;
-				cout<<"N: "<<to_base_64(result[0])<<endl;
-			}
-			else{
-				ofstream myfile;
-				myfile.open (outfile+".key", ios::trunc); 
-				myfile<<"Public Key: "<<to_base_64(result[2])<<endl;
-				myfile<<"Private Key: "<<to_base_64(result[1])<<endl;
-				myfile<<"N: "<<to_base_64(result[0])<<endl;
-			}
-			
+			gen_keys(size,outfile);
 		}
 	}
 	return 0;
