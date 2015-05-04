@@ -94,7 +94,7 @@ void encoding(string infile,string outfile,string keyfile){
 	BigUnsigned e = from_base_64(get_public_key(keyfile).c_str());
 	BigUnsigned n = from_base_64(get_nkey(keyfile).c_str());
 	if(e == 0 || n == 0)
-		throw runtime_error("Bed Key Values!");
+		throw runtime_error("Bad Key Values!");
 	string cleartext;
 
 	if(infile != ""){
@@ -140,7 +140,7 @@ void decoding(string infile,string outfile,string keyfile){
 	BigUnsigned d = from_base_64(get_private_key(keyfile).c_str());
 	BigUnsigned n = from_base_64(get_nkey(keyfile).c_str());
 	if(d == 0 || n == 0)
-		throw runtime_error("Bed Key Values!");
+		throw runtime_error("Bad Key Values!");
 	string ciphertext;
 	if(infile != ""){
 		//extract ciphertext from file

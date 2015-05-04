@@ -7,6 +7,18 @@
 #include <string>
 #include "base64.h"
 
+int calc_density(BigUnsigned n){
+	int density = 0;
+	BigUnsigned power = 8;
+	BigUnsigned current = pow(2,power);
+	while(n > current){
+		density++;
+		power += 8;
+		current = pow(2,power);
+	}
+	return density;
+}
+
 BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
     BigUnsigned m = 0;
 
@@ -25,16 +37,23 @@ BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
 //encrypt string to blocks
 string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
     string current;
-    for(int i = 0; i < message.size();++i){
+    int density = calc_density(n);
+    int itr = 0;
+    for(int i = 0; i < message.size();){
         string m;
-        m += message[i];
+        for(int j = 0; j < density; ++j){
+        	m += message[i++];
+        	if(i == message.size())
+        		break;
+        }
         BigUnsigned r = encrypt(m,e,n);
         current+= bigUnsignedToString(r);
-        if(i % 5 == 0 && i != 0)
+        if(itr % 5 == 0 && itr != 0)
             current+="\n";
         else
             current+= " ";
         m = "";
+        ++itr;
     }
     return current;
 }
