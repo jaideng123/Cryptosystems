@@ -1,54 +1,52 @@
 #include "pollard_att.h"
 #include <iostream>
 
-void pollard_att::_pollards(BigUnsigned n){
+void pollard_att::_pollards(mpz_t n){
   	/*If either p-1 or q-1 have only small prime factors,
    	  then n can be factored using Pollard's p-1 alg
   	*/
 
-   	/*mpf_t a, g, temp;
-   	mpf_init(a);
-  	mpf_init(g);
-  	//mpf_init(i);
-  	//mpf_init();
-  	//mpf_init(limit);
-  	mpf_init(temp);
-  	mpf_set_ui(a, 2);
-  	//mpf_set_ui(i, 2);
-  	//mpf_set_ui();*/
+   	mpz_t _n, p, q, r, i, val, g, s;
 
-    //pollard_att p = new pollard_att;
+    mpz_init(_n);
+    mpz_init(p);
+    mpz_init(q);
+    mpz_init(r);
+    mpz_init(i);
+    mpz_init(val);
+    mpz_init(g);
+    mpz_init(s);
 
-    if (n <= 2){
-      std::cout << "ERROR, N must be > 2";
-      return;
+    mpz_set(_n, n);
+    mpz_set_ui(r, 2);
+    mpz_set_ui(i, 2);
+    mpz_set_ui(s, 2);
+
+    while(true){
+      mpz_powm(r,r,i,_n);
+      mpz_sub_ui(val, r, 1);
+      mpz_gcd(g, val, _n);
+
+      if(mpz_cmp_ui(g,1)) break;
+
+      mpz_add_ui(i, i, 1);
     }
 
-  	BigUnsigned a = 2;
-  	BigUnsigned limit = 2017;
-    BigUnsigned g, i;
+    mpz_sub_ui(i, i, 1);
+    mpz_tdiv_q(q, _n, g);
+    //mpz_sub_ui(g, g, 1);
 
-  	for(i = 2; i < limit; ++i){
-  		a = modulo(a, i, n);
-  		g = gcd(a - 1, n);
+    /*while(mpz_cmp_ui(g, 1)){
+      if(mpz_divisible_p(g, s)){
+        while(mpz_divisible_p(g, s)){
+          mpz_tdiv_q(g, g, s);
+        }
+      }
+      mpz_nextprime(s,s);
+    }*/
 
-  		if(g > 1){
-  			break;
-  		}
-  	}
-
-  	if(g <= 1){
-      std::cout << "p-1 failed, try a larger limit or another method!";
-      return;//For-loop failed
-    }
-
-    //WHAT TA DO HERE, I got p, how do I get q from here?
-    //Ask about (p-1)(q-1) = n?
-
-    this->_p = g;
-
-    this->_q = (n/(g - 1)) + 1;//equivalent to (q-1) + 1;
-
-    //this->_p = 8597; this->_q = 3083;//These pass the test
-
+    mpz_set(p, g);
+    mpz_set(this->MPZ_p, p);
+    mpz_set(this->MPZ_q, q);
+    
 }

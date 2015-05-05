@@ -1,48 +1,60 @@
 #include "fermat_att.h"
 
-void fermat_att::_fermat(mpf_t n){
+void fermat_att::_fermat(mpz_t n){
 	/*TODO:If primes p and q that make up the modulus were created
   		in a way that makes them likely to be close together,
   		and therefore close to sq(n), then n can be factored
   		using Fermat factorization
 	*/
-  	mpf_t k, p, q, test_sqrt, temp;
+  mpz_t _n, b2, a, p, q, temp;
 
-    mpf_init(n);
-  	mpf_init(k);
-  	mpf_init(p);
-  	mpf_init(q);
-  	mpf_init(test_sqrt);
-  	mpf_init(temp);
+  mpz_init(_n);
+  mpz_init(b2);
+  mpz_init(a);
+  mpz_init(p); 
+  mpz_init(q);
+  mpz_init(temp);
 
-  	//Sets k to the sqrt(n)
-  	mpf_sqrt(k,n);
+  //prime1 = 2
+  mpz_set_ui(p, 2);
+  //k = n
+  mpz_set(_n, n);
 
-  	while(true){
-      break;//For escaping infinite loop/seg fault
-  		//Makes temp = k*k
-  		mpf_mul(temp, k, k);
-  		//temp = temp - n
-  		mpf_sub(temp, temp, n);
-  		mpf_set(test_sqrt, temp);
+  //a = sqrt(k)
+  mpz_sqrt(a, _n);
+  //a = a+1
+  mpz_add_ui(a, a, 1);
 
-  		if(bigint_test_sqrt(test_sqrt)){
-  			bigint_sqrt(temp, test_sqrt);
-  			//temp = k + temp
-  			mpf_add(temp, temp, k);
-  			mpf_set(p, temp);
+  while(true){
+    //b2 = a * a
+    mpz_mul(b2, a, a);
+    //b2 = b2 - _n
+    mpz_sub(b2, b2, _n);
 
-  			//temp = k - temp
-  			mpf_sub(temp, k, temp);
-  			mpf_set(q, temp);
+    if(mpz_perfect_square_p(b2)){
+      break;
+    }
 
-        break;
-  		}
-  		mpf_sub_ui(k, k, 1);
-  	}
+    mpz_add_ui(a, a, 1);
+  }
 
-    mpf_set(this->MPF_p, p);
-    mpf_set(this->MPF_q, q);
+  //temp = sqrt(b2)
+  mpz_sqrt(temp, b2);
+  mpz_sub(p, a, temp);
+  mpz_add(q, a, temp);
+
+  mpz_set(this->MPZ_p, p);
+  mpz_set(this->MPZ_q, q);
+
+  //free mem
+  /*mpz_clear(_n);
+  mpz_clear(b2);
+  mpz_clear(a);
+  mpz_clear(temp);
+  mpz_clear(p);
+  mpz_clear(q);*/
+
+    
 
   	//fermat_check()
   	

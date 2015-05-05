@@ -228,19 +228,19 @@ my_size_sign multInv(my_size_sign a, my_size_sign b) {
 
     return x_1;
 }
-/*
-my_size gcd(my_size a, my_size b) {
+
+my_size _gcd(my_size a, my_size b) {
     my_size c;
 
     while(a != 0) {
-        c = a;
-        a = b % a;
+        c = a%b;
+        a = b;
         b = c;
     }
 
-    return b;
+    return a;
 }
-*/
+
 my_size encode(my_size message, my_size n, my_size e) {
     my_size result = message;
     for(BigUnsigned i = 1; i < e; i++) {

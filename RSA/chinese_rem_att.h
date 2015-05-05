@@ -11,4 +11,5 @@ public:
 };
 
 //Will return x, where (a*x) % b == 1
-BigUnsigned mult_inv(BigUnsigned, BigUnsigned);
+//BigUnsigned mult_inv(BigUnsigned, BigUnsigned);
+//NVMD, already in crypt.cpp, wasted my time lol

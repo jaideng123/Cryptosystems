@@ -1,7 +1,7 @@
 #include <cppunit/config/SourcePrefix.h>
 #include "RSATestCase.h"
 #include "crypt.h"
-#include "rsa_keygen.h"
+//#include "rsa_keygen.h"
 #include "bigint/BigIntegerLibrary.hh"
 
 CPPUNIT_TEST_SUITE_REGISTRATION( RSATestCase );
@@ -52,65 +52,65 @@ void RSATestCase::decryptTest(){
 
 
 void RSATestCase::power_test(){
-    //std::vector<mpf_t> bg;
+    //std::vector<mpz_t> bg;
     bool two_pow = false, three_pow = false, four_pow = false;
-    mpf_t two, three, four, temp;
-    mpf_init(two);
-    mpf_init(three);
-    mpf_init(four);
-    mpf_init(temp);
-    mpf_set_ui(two, 2);
-    mpf_set_ui(three, 3);
-    mpf_set_ui(four, 4);
+    mpz_t two, three, four, temp;
+    mpz_init(two);
+    mpz_init(three);
+    mpz_init(four);
+    mpz_init(temp);
+    mpz_set_ui(two, 2);
+    mpz_set_ui(three, 3);
+    mpz_set_ui(four, 4);
 
     //temp = 2*2
-    mpf_mul(temp, two, two);
+    mpz_mul(temp, two, two);
     //bg.push_back(temp);
-    if(mpf_cmp_ui(temp, 4) == 0) two_pow = true;
+    if(mpz_cmp_ui(temp, 4) == 0) two_pow = true;
 
     //temp = 3*3
-    mpf_mul(temp, three, three);
+    mpz_mul(temp, three, three);
     //bg.push_back(temp);
-    if(mpf_cmp_ui(temp, 9) == 0) three_pow = true;
+    if(mpz_cmp_ui(temp, 9) == 0) three_pow = true;
 
     //temp = 4*4
-    mpf_mul(temp, four, four);
+    mpz_mul(temp, four, four);
     //bg.push_back(temp);
-    if(mpf_cmp_ui(temp, 16) == 0) four_pow = true;
+    if(mpz_cmp_ui(temp, 16) == 0) four_pow = true;
 
-    //Check, do I need to use mpf funct to do '==' ?
+    //Check, do I need to use mpz funct to do '==' ?
     CPPUNIT_ASSERT(two_pow);
     CPPUNIT_ASSERT(three_pow);
     CPPUNIT_ASSERT(four_pow);
 }
 
 void RSATestCase::squareroot_test(){
-    //std::vector<mpf_t> bg;
+    //std::vector<mpz_t> bg;
     bool four_sqrt = false, nine_sqrt = false, sixteen_sqrt = false;
-    mpf_t four, nine, sixteen, temp;
-    mpf_init(four);
-    mpf_init(nine);
-    mpf_init(sixteen);
-    mpf_init(temp);
-    mpf_set_ui(four, 4);
-    mpf_set_ui(nine, 9);
-    mpf_set_ui(sixteen, 16);
+    mpz_t four, nine, sixteen, temp;
+    mpz_init(four);
+    mpz_init(nine);
+    mpz_init(sixteen);
+    mpz_init(temp);
+    mpz_set_ui(four, 4);
+    mpz_set_ui(nine, 9);
+    mpz_set_ui(sixteen, 16);
 
     //Sets temp to the sqrt(four)
-    mpf_sqrt(temp,four);
+    mpz_sqrt(temp,four);
     //bg.push_back(temp);
-    if(mpf_cmp_ui(temp, 2) == 0) four_sqrt = true;
+    if(mpz_cmp_ui(temp, 2) == 0) four_sqrt = true;
 
 
     //Sets temp to the sqrt(nine)
-    mpf_sqrt(temp,nine);
+    mpz_sqrt(temp,nine);
     //bg.push_back(temp);
-    if(mpf_cmp_ui(temp, 3) == 0) nine_sqrt = true;
+    if(mpz_cmp_ui(temp, 3) == 0) nine_sqrt = true;
 
     //Sets temp to the sqrt(sixteen)
-    mpf_sqrt(temp,sixteen);
+    mpz_sqrt(temp,sixteen);
     //bg.push_back(temp);
-    if(mpf_cmp_ui(temp, 4) == 0) sixteen_sqrt = true;
+    if(mpz_cmp_ui(temp, 4) == 0) sixteen_sqrt = true;
 
     CPPUNIT_ASSERT(four_sqrt);
     CPPUNIT_ASSERT(nine_sqrt);
@@ -120,36 +120,48 @@ void RSATestCase::squareroot_test(){
 void RSATestCase::fermat_test(){
     bool p_bool = false, q_bool = false;
     fermat_att f;
-    mpf_t x;
-    mpf_init(x);
-    mpf_set_ui(x, 26504551);
-    f._fermat(x);
+    mpz_t n, x;
+    mpz_init(n);
+    mpz_init(x);
+    mpz_set_ui(n, 26504551);
+    f._fermat(n);
 
-    mpf_t p,q;
-    mpf_init(p);
-    mpf_init(q);
-    mpf_set_ui(p, 8597);
-    mpf_set_ui(q, 3083);
+    /*mpz_t p,q;
+    mpz_init(p);
+    mpz_init(q);
+    mpz_set_ui(p, 8597);
+    mpz_set_ui(q, 3083);*/
 
-    if(mpf_cmp(f.MPF_p, p) == 0) p_bool = true;
+    //x = p*q
+    mpz_mul(x, f.MPZ_p,f.MPZ_q);
 
-    if(mpf_cmp(f.MPF_q, q) == 0) q_bool = true;
+    if(mpz_cmp(n, x) == 0) p_bool = true;
+
+    //if(mpz_cmp(f.MPZ_q, q) == 0) q_bool = true;
 
     CPPUNIT_ASSERT(p_bool);
-    CPPUNIT_ASSERT(q_bool);
+    //CPPUNIT_ASSERT(q_bool);
 }
 
    void RSATestCase::pollards_test() {
+   bool p_bool = false;
    pollard_att pa;
-   BigUnsigned n = 26504551;
+   mpz_t n, x;
+   mpz_init(n);
+   mpz_init(x);
+   mpz_set_ui(n, 26504551);
    pa._pollards(n);
 
-   BigUnsigned p,q;
+   /*BigUnsigned p,q;
    p = 8597;
-   q = 3083;
+   q = 3083;*/
 
-   CPPUNIT_ASSERT(pa._p == p);
-   CPPUNIT_ASSERT(pa._q == q);
+    mpz_mul(x, pa.MPZ_p,pa.MPZ_q);
+
+    if(mpz_cmp(n, x) == 0) p_bool = true;
+
+   CPPUNIT_ASSERT(p_bool);
+
    }
  
 
