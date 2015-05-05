@@ -56,7 +56,6 @@ int main(int argc, char* argv[]){
         //cout<<"./dorothy decrypt -n <N>";
     }
     if(argc > 1){
-        string function = argv[1];
         string infile;//encrypted file
         string outfile;//decrypted file
         string attack;//type of attack
