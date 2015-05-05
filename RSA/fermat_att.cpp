@@ -6,10 +6,10 @@ void fermat_att::_fermat(mpz_t n){
   		and therefore close to sq(n), then n can be factored
   		using Fermat factorization
 	*/
-  mpz_t _n, b2, a, p, q, temp;
+  mpz_t _n, a2, a, p, q, temp;
 
   mpz_init(_n);
-  mpz_init(b2);
+  mpz_init(a2);
   mpz_init(a);
   mpz_init(p); 
   mpz_init(q);
@@ -26,20 +26,20 @@ void fermat_att::_fermat(mpz_t n){
   mpz_add_ui(a, a, 1);
 
   while(true){
-    //b2 = a * a
-    mpz_mul(b2, a, a);
-    //b2 = b2 - _n
-    mpz_sub(b2, b2, _n);
+    //a2 = a * a
+    mpz_mul(a2, a, a);
+    //a2 = a2 - _n
+    mpz_sub(a2, a2, _n);
 
-    if(mpz_perfect_square_p(b2)){
+    if(mpz_perfect_square_p(a2)){
       break;
     }
 
     mpz_add_ui(a, a, 1);
   }
 
-  //temp = sqrt(b2)
-  mpz_sqrt(temp, b2);
+  //temp = sqrt(a2)
+  mpz_sqrt(temp, a2);
   mpz_sub(p, a, temp);
   mpz_add(q, a, temp);
 
@@ -48,7 +48,7 @@ void fermat_att::_fermat(mpz_t n){
 
   //free mem
   /*mpz_clear(_n);
-  mpz_clear(b2);
+  mpz_clear(a2);
   mpz_clear(a);
   mpz_clear(temp);
   mpz_clear(p);

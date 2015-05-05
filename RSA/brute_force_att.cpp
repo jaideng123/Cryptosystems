@@ -34,6 +34,11 @@ void brute_force_att::_brute_force(mpz_t n){
     
     mpz_set(this->MPZ_p, p);
     mpz_set(this->MPZ_q, q);
+
+    
+    /*mpz_clear(_n);
+    mpz_clear(p);
+    mpz_clear(q);*/
     
 
 }

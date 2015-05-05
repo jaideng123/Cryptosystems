@@ -1,6 +1,6 @@
 #include "fermat_att.h"
-#include "poll_att.h"
-#include "exp_att.h"
+#include "pollard_att.h"
+#include "brute_force_att.h"
 
 /*
   Plan on implementing

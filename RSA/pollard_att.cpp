@@ -48,5 +48,16 @@ void pollard_att::_pollards(mpz_t n){
     mpz_set(p, g);
     mpz_set(this->MPZ_p, p);
     mpz_set(this->MPZ_q, q);
+
+    //free mem
+    /*mpz_clear(_n);
+    mpz_clear(p);
+    mpz_clear(q);
+    mpz_clear(r);
+    mpz_clear(i);
+    mpz_clear(val);
+    mpz_clear(g);
+    mpz_clear(s);*/
+
     
 }

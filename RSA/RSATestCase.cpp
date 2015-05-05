@@ -141,6 +141,9 @@ void RSATestCase::fermat_test(){
 
     CPPUNIT_ASSERT(p_bool);
     //CPPUNIT_ASSERT(q_bool);
+
+    /*mpz_clear(n);
+    mpz_clear(x);*/
 }
 
 void RSATestCase::pollards_test() {
@@ -162,6 +165,9 @@ void RSATestCase::pollards_test() {
 
   CPPUNIT_ASSERT(pollards_check);
 
+  /*mpz_clear(n);
+  mpz_clear(x);*/
+
 }
 
 void RSATestCase::brute_force_test(){
@@ -178,6 +184,9 @@ void RSATestCase::brute_force_test(){
   if(mpz_cmp(n, x) == 0) brute_force_check = true;
 
   CPPUNIT_ASSERT(brute_force_check);
+
+  /*mpz_clear(n);
+  mpz_clear(x);*/
 
 }
  
