@@ -2,11 +2,11 @@
 #include "math_functions.h"
 #include "crypt.h"
 
-class chinese_rem_att{
+class brute_force_att{
 public:
-        BigUnsigned _p, _q;
+        mpz_t MPZ_p, MPZ_q;
         
-        void _chinese_rem(BigUnsigned[], BigUnsigned[], int);
+        void _brute_force(mpz_t);
 
 };
 

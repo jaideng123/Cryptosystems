@@ -5,6 +5,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include "fermat_att.h"
 #include "pollard_att.h"
+#include "brute_force_att.h"
 
 /*
  * A test case that is designed to produce
@@ -24,6 +25,7 @@ class RSATestCase : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( squareroot_test );
   CPPUNIT_TEST( fermat_test );
   CPPUNIT_TEST( pollards_test );
+  CPPUNIT_TEST( brute_force_test);
   CPPUNIT_TEST_SUITE_END();
 
 protected:
@@ -43,7 +45,10 @@ protected:
   void power_test();
   void squareroot_test();
   void fermat_test();
+  //pollards tests
   void pollards_test();
+  //brute force tests
+  void brute_force_test();
 
   void example();
 };

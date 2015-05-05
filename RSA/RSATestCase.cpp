@@ -143,26 +143,43 @@ void RSATestCase::fermat_test(){
     //CPPUNIT_ASSERT(q_bool);
 }
 
-   void RSATestCase::pollards_test() {
-   bool p_bool = false;
-   pollard_att pa;
-   mpz_t n, x;
-   mpz_init(n);
-   mpz_init(x);
-   mpz_set_ui(n, 26504551);
-   pa._pollards(n);
+void RSATestCase::pollards_test() {
+  bool pollards_check = false;
+  pollard_att pa;
+  mpz_t n, x;
+  mpz_init(n);
+  mpz_init(x);
+  mpz_set_ui(n, 26504551);
+  pa._pollards(n);
 
    /*BigUnsigned p,q;
    p = 8597;
    q = 3083;*/
 
-    mpz_mul(x, pa.MPZ_p,pa.MPZ_q);
+  mpz_mul(x, pa.MPZ_p,pa.MPZ_q);
 
-    if(mpz_cmp(n, x) == 0) p_bool = true;
+  if(mpz_cmp(n, x) == 0) pollards_check = true;
 
-   CPPUNIT_ASSERT(p_bool);
+  CPPUNIT_ASSERT(pollards_check);
 
-   }
+}
+
+void RSATestCase::brute_force_test(){
+  bool brute_force_check = false;
+  brute_force_att bf;
+  mpz_t n,x;
+  mpz_init(n);
+  mpz_init(x);
+  mpz_set_ui(n, 26504551);
+  bf._brute_force(n);
+
+  mpz_mul(x, bf.MPZ_p,bf.MPZ_q);
+
+  if(mpz_cmp(n, x) == 0) brute_force_check = true;
+
+  CPPUNIT_ASSERT(brute_force_check);
+
+}
  
 
 void RSATestCase::setUp(){
