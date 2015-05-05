@@ -118,28 +118,33 @@ void RSATestCase::squareroot_test(){
 }
 
 void RSATestCase::fermat_test(){
-    bool p_bool = false, q_bool = false;
+    //bool p_bool = false, q_bool = false;
     fermat_att f;
-    mpz_t n, x;
+    BigUnsigned n,x;
+    n = 26504551;
+    f._fermat(n);
+    /*mpz_t n, x;
     mpz_init(n);
     mpz_init(x);
     mpz_set_ui(n, 26504551);
     f._fermat(n);
 
-    /*mpz_t p,q;
+    mpz_t p,q;
     mpz_init(p);
     mpz_init(q);
     mpz_set_ui(p, 8597);
     mpz_set_ui(q, 3083);*/
 
     //x = p*q
-    mpz_mul(x, f.MPZ_p,f.MPZ_q);
+    //mpz_mul(x, f.MPZ_p,f.MPZ_q);
 
-    if(mpz_cmp(n, x) == 0) p_bool = true;
+    //if(mpz_cmp(n, x) == 0) p_bool = true;
 
     //if(mpz_cmp(f.MPZ_q, q) == 0) q_bool = true;
 
-    CPPUNIT_ASSERT(p_bool);
+    x = (f.ferm_p*f.ferm_q);
+
+    CPPUNIT_ASSERT(x == n);
     //CPPUNIT_ASSERT(q_bool);
 
     /*mpz_clear(n);
@@ -147,23 +152,27 @@ void RSATestCase::fermat_test(){
 }
 
 void RSATestCase::pollards_test() {
-  bool pollards_check = false;
+  //bool pollards_check = false;
   pollard_att pa;
-  mpz_t n, x;
+  BigUnsigned n,x;
+  n = 26504551;
+  /*mpz_t n, x;
   mpz_init(n);
   mpz_init(x);
-  mpz_set_ui(n, 26504551);
+  mpz_set_ui(n, 26504551);*/
   pa._pollards(n);
 
    /*BigUnsigned p,q;
    p = 8597;
    q = 3083;*/
 
-  mpz_mul(x, pa.MPZ_p,pa.MPZ_q);
+  //mpz_mul(x, pa.MPZ_p,pa.MPZ_q);
 
-  if(mpz_cmp(n, x) == 0) pollards_check = true;
+  //if(mpz_cmp(n, x) == 0) pollards_check = true;
 
-  CPPUNIT_ASSERT(pollards_check);
+  x = (pa.poll_p*pa.poll_q);
+
+  CPPUNIT_ASSERT(x == n);
 
   /*mpz_clear(n);
   mpz_clear(x);*/
@@ -171,19 +180,22 @@ void RSATestCase::pollards_test() {
 }
 
 void RSATestCase::brute_force_test(){
-  bool brute_force_check = false;
+  //bool brute_force_check = false;
   brute_force_att bf;
-  mpz_t n,x;
+  BigUnsigned n,x;
+  n = 26504551;
+  /*mpz_t n,x;
   mpz_init(n);
   mpz_init(x);
-  mpz_set_ui(n, 26504551);
+  mpz_set_ui(n, 26504551);*/
   bf._brute_force(n);
 
-  mpz_mul(x, bf.MPZ_p,bf.MPZ_q);
+  x = (bf.brute_p*bf.brute_q);
+  //mpz_mul(x, bf.MPZ_p,bf.MPZ_q);
 
-  if(mpz_cmp(n, x) == 0) brute_force_check = true;
+  //if(mpz_cmp(n, x) == 0) brute_force_check = true;
 
-  CPPUNIT_ASSERT(brute_force_check);
+  CPPUNIT_ASSERT(x == n);
 
   /*mpz_clear(n);
   mpz_clear(x);*/

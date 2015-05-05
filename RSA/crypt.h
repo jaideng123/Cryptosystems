@@ -12,6 +12,11 @@ BigUnsigned generate_prime(int bit_length);
 BigUnsigned get_randint(int bit_length);
 BigUnsigned pow(BigUnsigned x, BigUnsigned y);
 BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod);
+BigUnsigned _gcd(BigUnsigned a, BigUnsigned b);
+BigUnsigned _sqrt(BigUnsigned const &n);
+bool is_perf_square(BigUnsigned const &n);
+bool is_prime(BigUnsigned n);
+BigUnsigned next_prime(BigUnsigned n);
 bool fermat(BigUnsigned p, int iterations);
 bool miller_rabin(BigUnsigned p,int iterations);
 

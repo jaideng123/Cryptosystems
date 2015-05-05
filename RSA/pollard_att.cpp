@@ -1,12 +1,34 @@
 #include "pollard_att.h"
-#include <iostream>
 
-void pollard_att::_pollards(mpz_t n){
+void pollard_att::_pollards(BigUnsigned n){
   	/*If either p-1 or q-1 have only small prime factors,
    	  then n can be factored using Pollard's p-1 alg
   	*/
 
-   	mpz_t _n, p, q, r, i, val, g, s;
+    BigUnsigned p, q, r, i, val, g, s;
+
+    r = 2; i = 2; s = 2;
+
+    while(true){
+      r = modexp(r, i, n);
+      val = r - 1;
+      g = _gcd(val, n);
+      //mpz_powm(r,r,i,_n);
+      //mpz_sub_ui(val, r, 1);
+      //mpz_gcd(g, val, _n);
+
+      if(g == 1) break;
+
+      i++;
+    }
+
+    //i--;
+    q = n/g;
+
+    this->poll_p, g;
+    this->poll_q, q;
+
+   	/*mpz_t _n, p, q, r, i, val, g, s;
 
     mpz_init(_n);
     mpz_init(p);
@@ -36,21 +58,21 @@ void pollard_att::_pollards(mpz_t n){
     mpz_tdiv_q(q, _n, g);
     //mpz_sub_ui(g, g, 1);
 
-    /*while(mpz_cmp_ui(g, 1)){
+    while(mpz_cmp_ui(g, 1)){
       if(mpz_divisible_p(g, s)){
         while(mpz_divisible_p(g, s)){
           mpz_tdiv_q(g, g, s);
         }
       }
       mpz_nextprime(s,s);
-    }*/
+    }
 
     mpz_set(p, g);
     mpz_set(this->MPZ_p, p);
     mpz_set(this->MPZ_q, q);
 
     //free mem
-    /*mpz_clear(_n);
+    mpz_clear(_n);
     mpz_clear(p);
     mpz_clear(q);
     mpz_clear(r);

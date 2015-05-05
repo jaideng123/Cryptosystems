@@ -241,6 +241,64 @@ my_size _gcd(my_size a, my_size b) {
     return a;
 }
 
+my_size _sqrt(my_size const &n){
+    my_size x = n;
+    my_size y = n;
+    y++;
+    y /= 2;
+
+    while(y < x){
+        x = y;
+        y += (n/x);
+        y /= 2;
+    }
+
+    return x;
+}
+
+bool is_perf_square(my_size const &n){
+    my_size x = n;
+    vector<my_size> bi_vect;
+    while(x*x != n){
+        x = (x + (n/x))/2;
+        for(int i = 0; i < bi_vect.size(); ++i){
+            if(x == bi_vect[i]) return false;
+        }
+        bi_vect.push_back(x);
+    }
+
+    return true;
+
+}
+
+bool is_prime(my_size n){
+    if(n % 2 == 0 || n % 3 == 0){
+        return false;
+    }
+
+    BigUnsigned d = 6;
+    while(d * d <= n){
+        if(n % (d - 1) == 0){
+            return false;
+        }
+        if(n % (d + 1) == 0){
+            return false;
+        }
+        d += 6;
+    }
+
+    return true;
+}
+
+my_size next_prime(my_size n){
+    do{
+        ++n;
+    }
+    while(!is_prime(n));
+
+    return n;
+}
+
 my_size encode(my_size message, my_size n, my_size e) {
     my_size result = message;
     for(BigUnsigned i = 1; i < e; i++) {

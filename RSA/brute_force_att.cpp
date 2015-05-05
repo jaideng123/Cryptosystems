@@ -9,14 +9,27 @@
 // gcd(7, 33) = gcd(7, 13) = gcd(33, 13) = 1
 
 
-void brute_force_att::_brute_force(mpz_t n){
+void brute_force_att::_brute_force(BigUnsigned n){
     /*TODO: instead of abusing small public exp. e, 
         take advantage of similar circumstances where
         RSA encrypters are limited in their encryption size by
         directly attacking n with a brute force algorithm
     */
 
-    mpz_t _n, p, q;
+    BigUnsigned p, q;
+
+    while(n > p){
+        if(n%p == 0) break;
+
+        p = next_prime(p);
+    }
+
+    q = n/p;
+
+    this->brute_p = p;
+    this->brute_q = q;
+    
+    /*mpz_t _n, p, q;
 
     mpz_init(_n);
     mpz_init(p);
@@ -36,7 +49,7 @@ void brute_force_att::_brute_force(mpz_t n){
     mpz_set(this->MPZ_q, q);
 
     
-    /*mpz_clear(_n);
+    mpz_clear(_n);
     mpz_clear(p);
     mpz_clear(q);*/
     

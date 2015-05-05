@@ -1,12 +1,12 @@
 #include "math_functions.h"
-#include "bigint/BigIntegerLibrary.hh"
+#include "crypt.h"
 
 class fermat_att{
 public:
-	mpz_t MPZ_p, MPZ_q;
+	BigUnsigned ferm_p, ferm_q;
 	//mpf_init(MPF_p);
 	//mpf_init(MPF_q);
 	
-	void _fermat(mpz_t);
+	void _fermat(BigUnsigned);
 
 };

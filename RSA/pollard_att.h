@@ -1,10 +1,12 @@
-#include "crypt.h"
 #include "math_functions.h"
+#include "crypt.h"
 
 class pollard_att{
 public:
-	mpz_t MPZ_p, MPZ_q;
+	BigUnsigned poll_p, poll_q;
+	//mpf_init(MPF_p);
+	//mpf_init(MPF_q);
 	
-	void _pollards(mpz_t);
+	void _pollards(BigUnsigned);
 };
 

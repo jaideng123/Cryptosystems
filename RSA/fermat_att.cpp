@@ -1,11 +1,41 @@
 #include "fermat_att.h"
 
-void fermat_att::_fermat(mpz_t n){
+void fermat_att::_fermat(BigUnsigned n){
 	/*TODO:If primes p and q that make up the modulus were created
   		in a way that makes them likely to be close together,
   		and therefore close to sq(n), then n can be factored
   		using Fermat factorization
 	*/
+
+  BigUnsigned a2, a, p, q, temp;
+
+  p = 2;
+
+  a = _sqrt(n);
+  a++;
+
+  while(true){
+    a2 = a*a;
+    a2 = a2 - n;
+
+    if(is_perf_square(a2)){
+      break;
+    }
+
+    a++;
+  }
+
+  temp = _sqrt(a2);
+  p = a - temp;
+  q = a + temp;
+
+  this->ferm_p = p;
+  this->ferm_q = q;
+
+    //fermat_check()
+
+
+  /*
   mpz_t _n, a2, a, p, q, temp;
 
   mpz_init(_n);
@@ -17,8 +47,9 @@ void fermat_att::_fermat(mpz_t n){
 
   //prime1 = 2
   mpz_set_ui(p, 2);
+
   //k = n
-  mpz_set(_n, n);
+  mpz_set_str(_n, n);
 
   //a = sqrt(k)
   mpz_sqrt(a, _n);
@@ -47,15 +78,15 @@ void fermat_att::_fermat(mpz_t n){
   mpz_set(this->MPZ_q, q);
 
   //free mem
-  /*mpz_clear(_n);
+  mpz_clear(_n);
   mpz_clear(a2);
   mpz_clear(a);
   mpz_clear(temp);
   mpz_clear(p);
-  mpz_clear(q);*/
+  mpz_clear(q);
 
     
 
   	//fermat_check()
-  	
+*/
 }

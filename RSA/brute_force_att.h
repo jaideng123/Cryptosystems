@@ -1,12 +1,13 @@
-#include "bigint/BigIntegerLibrary.hh"
 #include "math_functions.h"
 #include "crypt.h"
 
 class brute_force_att{
 public:
-        mpz_t MPZ_p, MPZ_q;
-        
-        void _brute_force(mpz_t);
+	BigUnsigned brute_p, brute_q;
+	//mpf_init(MPF_p);
+	//mpf_init(MPF_q);
+	
+	void _brute_force(BigUnsigned);
 
 };
 
