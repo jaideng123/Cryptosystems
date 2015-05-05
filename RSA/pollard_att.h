@@ -10,3 +10,4 @@ public:
 	void _pollards(BigUnsigned);
 };
 
+BigUnsigned _factoring(BigUnsigned, BigUnsigned, BigUnsigned);

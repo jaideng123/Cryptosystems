@@ -241,6 +241,20 @@ my_size_sign multInv(my_size_sign a, my_size_sign b) {
     return a;
 }*/
 
+my_size _lcm(my_size a, my_size b){
+    my_size highest;
+    if(a > b){
+       highest = a;
+    }
+    else highest = b;
+
+    while(true){
+        if(highest%a == 0 && highest%b == 0){
+            return highest;
+        }
+    }
+}
+
 my_size _sqrt(my_size const &n){
     my_size x = n;
     my_size y = n;

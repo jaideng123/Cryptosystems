@@ -6,7 +6,21 @@ void pollard_att::_pollards(BigUnsigned n){
    	  then n can be factored using Pollard's p-1 alg
   	*/
 
-    BigUnsigned i, p, q, g, s, r, val;
+
+    BigUnsigned p, a, B;
+
+    a = 2; B = 20;//B is the bound. the limit.
+
+    while(!is_prime(n)){
+      p = _factoring(n, a, B);
+      n /= p;
+    }
+
+    this->poll_p, p;
+    this->poll_q, n;
+
+
+    /*BigUnsigned i, p, q, g, s, r, val;
 
     r = 2; i = 2; s = 2;
 
@@ -28,7 +42,7 @@ void pollard_att::_pollards(BigUnsigned n){
     //i--;
     q = n/g;
 
-    g--;
+    g--;*/
 
     //cout << "\n second while\n";
     /*while (g > 1){
@@ -52,8 +66,8 @@ void pollard_att::_pollards(BigUnsigned n){
    //cout << "\n done with whiles \n";
 
 
-    this->poll_p, g;
-    this->poll_q, q;
+    //this->poll_p, g;
+    //this->poll_q, q;
 
    	/*mpz_t _n, p, q, r, i, val, g, s;
 
@@ -109,4 +123,45 @@ void pollard_att::_pollards(BigUnsigned n){
     mpz_clear(s);*/
 
     
+}
+
+BigUnsigned _factoring(BigUnsigned n, BigUnsigned a, BigUnsigned B){
+  vector<BigUnsigned> big_vect;
+  BigUnsigned d, k, t;
+
+  int i = 0;
+  for(BigUnsigned x = 1; x < B; x++){
+    big_vect.push_back(x);
+  }
+
+  //gets lcm of set (here it's 0 to B)
+  k = big_vect[0];
+  for(int x = 0; x < big_vect.size(); ++i){
+    k = _lcm(k, big_vect[x]);
+  }
+
+  for (;;i++) {
+    if (gcd(a, n) > 1) return gcd(a, n);  // See if we get a freebee.
+            // (Besides, gcd(a,n) must
+            //   be 1 for the rest to work)
+
+    t = modexp(a, k, n);     // always have 1<t<n
+    d = gcd(t-1, n);      //   avoid div-by-zero.
+    if ( (d>1) && (d<n) ) return d; //found p or q
+    if ( ((B%60) == 0) || (d == n && a+1<n ) || i>80) {
+      ++B;
+      k = big_vect[0];
+      
+      for(int x = 0; x < big_vect.size(); ++i){
+        k = _lcm(k, big_vect[x]);
+      }
+
+      a %= n; i = 0;
+      }
+    else if ( d==1 ) {
+      a++;        // Try another base
+      }
+    else break;
+  }
+  return 0;
 }
