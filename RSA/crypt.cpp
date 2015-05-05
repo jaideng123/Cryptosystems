@@ -229,7 +229,7 @@ my_size_sign multInv(my_size_sign a, my_size_sign b) {
     return x_1;
 }
 
-my_size _gcd(my_size a, my_size b) {
+/*my_size _gcd(my_size a, my_size b) {
     my_size c;
 
     while(a != 0) {
@@ -239,7 +239,7 @@ my_size _gcd(my_size a, my_size b) {
     }
 
     return a;
-}
+}*/
 
 my_size _sqrt(my_size const &n){
     my_size x = n;

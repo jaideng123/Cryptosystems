@@ -18,13 +18,17 @@ void brute_force_att::_brute_force(BigUnsigned n){
 
     BigUnsigned p, q;
 
+    p = 2;
+
     while(n > p){
         if(n%p == 0) break;
 
         p = next_prime(p);
     }
 
+    //ceiling division
     q = n/p;
+    if (q * p < n) q++;
 
     this->brute_p = p;
     this->brute_q = q;
