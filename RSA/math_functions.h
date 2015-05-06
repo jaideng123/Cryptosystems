@@ -1,9 +1,6 @@
 #ifndef MATH_FUNCTIONS_H
 #define MATH_FUNCTIONS_H
 
-#include "gmp-6.0.0/gmp.h"
-#include "gmp-6.0.0/gmp-impl.h"
-
 //Open on left mathfunctions.h makefile pollard.h/cpp
 //Open on right fermatatt.h/cpp crypt.cpp RSATestCase.h/cpp
 
@@ -16,8 +13,8 @@
         return val + 1;
     }
 }*/
-
-inline void bigint_sqrt(mpz_t result, const mpz_t val){  
+/*
+inline void bigint_sqrt(mpz_t result, const mpz_t val){
 	mpz_t g, ng, temp;
     mpz_init(temp);
     mpz_init(g);
@@ -41,12 +38,12 @@ inline void bigint_sqrt(mpz_t result, const mpz_t val){
     mpz_set(result, g);
 	//^Might need BigDec
 
-	do { 
+	do {
         mpz_add_ui(result, result, 1);
         mpz_mul(temp, result, result);
     }
     //1 if temp > val, 0 if temp == val, -1 if temp < val
-	while(mpz_cmp(temp,val) == 0 || mpz_cmp(temp,val) < 0); 
+	while(mpz_cmp(temp,val) == 0 || mpz_cmp(temp,val) < 0);
 
 	do {
         mpz_sub_ui(result, result, 1);
@@ -70,7 +67,7 @@ inline void bigint_pow(mpz_t result, const mpz_t val, int pow){
             mpz_div(result, result, val);
         }
     }
-    
+
 }
 
 /*inline bool bigint_test_sqrt(const mpz_t val){
@@ -88,5 +85,4 @@ inline void bigint_pow(mpz_t result, const mpz_t val, int pow){
     }
 
 }*/
-
 #endif
