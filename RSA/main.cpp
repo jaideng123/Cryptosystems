@@ -1,12 +1,16 @@
-#include "rsa_keygen.h"
 #include "crypt.h"
 #include "bigint/BigIntegerLibrary.hh"
 #include <iostream>
 
 int main()
 {
-    BigUnsigned prime1 = generate_prime(64);
-    BigUnsigned prime2 = generate_prime(64);
+    cout << "Generating prime1" << endl;
+    BigUnsigned prime1 = generate_prime(1024);
+    cout << "Generated prime1" << endl;
+
+    cout << "Generating prime2" << endl;
+    BigUnsigned prime2 = generate_prime(1024);
+    cout << "Generated prime2" << endl;
 
     cout << "First Prime: " << prime1 << endl;
     cout << "Second Prime: " << prime2 << endl;

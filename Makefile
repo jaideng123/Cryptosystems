@@ -9,8 +9,8 @@ setuptest:
 munchkincrypt:
 	g++ -std=c++11 RSA/crypt.cpp RSA/RSA.cpp  $(bigint-objects) -w -g -o munchkincrypt
 
-brennen:
-	g++ -std=c++11 -g RSA/main.cpp RSA/crypt.cpp $(bigint-objects) -w -o brennen
+dorothy:
+	g++ -std=c++11 RSA/dorothy.cpp RSA/fermat_att.cpp RSA/pollard_att.cpp RSA/brute_force_att.cpp RSA/crypt.cpp $(bigint-objects) -w -g -o dorothy
 
 clean:
-	rm *test munchkincrypt
+	rm *test munchkincrypt dorothy

@@ -2,12 +2,12 @@
 #include "crypt.h"
 
 class brute_force_att{
-public:
-	BigUnsigned brute_p, brute_q;
-	//mpf_init(MPF_p);
-	//mpf_init(MPF_q);
-	
-	void _brute_force(BigUnsigned);
+    public:
+        BigUnsigned brute_p, brute_q;
+        //mpf_init(MPF_p);
+        //mpf_init(MPF_q);
+
+        void _brute_force(BigUnsigned);
 
 };
 

@@ -2,52 +2,6 @@
 
 using namespace std;
 
-//handles decoding
-void decoding(string infile,string outfile,string keyfile){
-    BigUnsigned d = from_base_64(get_private_key(keyfile).c_str());
-    BigUnsigned n = from_base_64(get_nkey(keyfile).c_str());
-    if(d == 0 || n == 0)
-        throw runtime_error("Bad Key Values!");
-    string ciphertext;
-    if(infile != ""){
-        //extract ciphertext from file
-        ifstream myfile;
-        myfile.open(infile);
-        if (myfile.is_open())
-        {
-            string line;
-            while ( getline (myfile,line) )
-            {
-                ciphertext += line +"\n";
-            }
-            myfile.close();
-        }
-        else
-            throw runtime_error("Error Opening File!");
-    }
-    else{
-        cout<<"Please Input the cipher text: \n";
-        getline(cin,ciphertext);
-    }
-
-    string dec = decrypt_blocks(d,n,ciphertext);
-
-    if(outfile != ""){
-        ofstream myfile (outfile);
-        if (myfile.is_open())
-        {
-            myfile << dec;
-            myfile.close();
-        }
-        else
-            throw runtime_error("Error Opening File!");
-    }
-    else{
-        cout<<"Here is your cleartext: \n"<<dec;
-    }
-    return;
-}
-
 int main(int argc, char* argv[]){
     if(argc == 1){
         cout<<"Please use the following format:\n";
@@ -60,6 +14,9 @@ int main(int argc, char* argv[]){
         string infile;//encrypted file
         string outfile;//decrypted file
         string attack;//type of attack
+
+        string n = "";
+
         int size = 16;
         char c;
         while ((c = getopt (argc, argv, "i:o:s:a:n:")) != -1) {
@@ -77,24 +34,64 @@ int main(int argc, char* argv[]){
                     attack = optarg;
                     break;
                 case 'n':
-                  	n = optarg;
-                  	break;
+                    n = optarg;
+                    break;
                 default:
                     abort();
             }
         }
        	if(attack == "brute"){
-       		//add function for decoding 
-            decoding(infile,outfile,keyfile);
+            cout << "Brute Attack" << endl;
+
+            BruteAttack(stringToBigUnsigned(n));
+
+       	    //add function for decoding
+            //decoding(infile,outfile,keyfile);
         }
         else if(attack == "fermat"){
-        	//add function for decoding
-        	decoding(infile,outfile,keyfile);
+            cout << "Fermat Attack" << endl;
+
+            FermatAttack(stringToBigUnsigned(n));
+       	    //add function for decoding
+            //decoding(infile,outfile,keyfile);
         }
         else if(attack == "pollard"){
-        	//add function for decoding
-        	decoding(infile,outfile,keyfile);
+            cout << "Pollard Attack" << endl;
+
+            PollardAttack(stringToBigUnsigned(n));
+            //add function for decoding
+            //decoding(infile,outfile,keyfile);
         }
     }
     return 0;
+}
+
+void BruteAttack(BigUnsigned n) {
+
+    brute_force_att bruteForce;
+
+    bruteForce._brute_force(n);
+
+    cout << "P: " << bruteForce.brute_p << endl;
+    cout << "Q: " << bruteForce.brute_q << endl;
+}
+
+void FermatAttack(BigUnsigned n) {
+
+    fermat_att fermat;
+
+    fermat._fermat(n);
+
+    cout << "P: " << fermat.ferm_p << endl;
+    cout << "Q: " << fermat.ferm_q << endl;
+}
+
+void PollardAttack(BigUnsigned n) {
+
+    pollard_att pollard;
+
+    pollard._pollards(n);
+
+    cout << "P: " << pollard.poll_p << endl;
+    cout << "Q: " << pollard.poll_q << endl;
 }

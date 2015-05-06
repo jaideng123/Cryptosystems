@@ -8,15 +8,15 @@
 #include "base64.h"
 
 int calc_density(BigUnsigned n){
-	int density = 0;
-	BigUnsigned power = 8;
-	BigUnsigned current = pow(2,power);
-	while(n > current){
-		density++;
-		power += 8;
-		current = pow(2,power);
-	}
-	return density;
+    int density = 0;
+    BigUnsigned power = 8;
+    BigUnsigned current = pow(2,power);
+    while(n > current){
+        density++;
+        power += 8;
+        current = pow(2,power);
+    }
+    return density;
 }
 
 BigUnsigned encrypt(string message, BigUnsigned e, BigUnsigned n) {
@@ -42,9 +42,9 @@ string encrypt_blocks(string message, BigUnsigned e, BigUnsigned n) {
     for(int i = 0; i < message.size();){
         string m;
         for(int j = 0; j < density; ++j){
-        	m += message[i++];
-        	if(i == message.size())
-        		break;
+            m += message[i++];
+            if(i == message.size())
+                break;
         }
         BigUnsigned r = encrypt(m,e,n);
         current+= bigUnsignedToString(r);
@@ -230,21 +230,21 @@ my_size_sign multInv(my_size_sign a, my_size_sign b) {
 }
 
 /*my_size _gcd(my_size a, my_size b) {
-    my_size c;
+  my_size c;
 
-    while(a != 0) {
-        c = a%b;
-        a = b;
-        b = c;
-    }
+  while(a != 0) {
+  c = a%b;
+  a = b;
+  b = c;
+  }
 
-    return a;
-}*/
+  return a;
+  }*/
 
 my_size _lcm(my_size a, my_size b){
     my_size highest;
     if(a > b){
-       highest = a;
+        highest = a;
     }
     else highest = b;
 
