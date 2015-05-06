@@ -12,6 +12,6 @@
 
 void BruteAttack(BigUnsigned n, string e, string infile, string outfile);
 void FermatAttack(BigUnsigned n, string e, string infile, string outfile);
-void PollardAttack(BigUnsigned n, string e, string infile, string outfile);
+void PollardAttack(BigUnsigned n, BigUnsigned b, string e, string infile, string outfile);
 
 void Decode(BigUnsigned p, BigUnsigned q, string e, string infile, string outfile);

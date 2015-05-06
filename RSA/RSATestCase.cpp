@@ -87,13 +87,14 @@ void RSATestCase::fermat_test(){
 void RSATestCase::pollards_test() {
   //bool pollards_check = false;
   pollard_att pa;
-  BigUnsigned n,x;
+  BigUnsigned n, x, b;
+  b = 100000;
   n = 26504551;
   /*mpz_t n, x;
   mpz_init(n);
   mpz_init(x);
   mpz_set_ui(n, 26504551);*/
-  pa._pollards(n);
+  pa._pollards(n, b);
 
    /*BigUnsigned p,q;
    p = 8597;
@@ -134,7 +135,7 @@ void RSATestCase::brute_force_test(){
   mpz_clear(x);*/
 
 }
- 
+
 
 void RSATestCase::setUp(){
     m_value1 = 1;

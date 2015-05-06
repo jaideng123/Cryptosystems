@@ -21,8 +21,6 @@ class RSATestCase : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( generateKeyTest );
   CPPUNIT_TEST( primesWithGenerate );
   CPPUNIT_TEST( decryptTest );
-  CPPUNIT_TEST( power_test );
-  CPPUNIT_TEST( squareroot_test );
   CPPUNIT_TEST( fermat_test );
   CPPUNIT_TEST( pollards_test );
   CPPUNIT_TEST( brute_force_test);
@@ -42,8 +40,6 @@ protected:
   void primesWithGenerate();
   void decryptTest();
   //fermat tests
-  void power_test();
-  void squareroot_test();
   void fermat_test();
   //pollards tests
   void pollards_test();

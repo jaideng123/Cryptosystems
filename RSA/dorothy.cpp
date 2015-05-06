@@ -16,10 +16,11 @@ int main(int argc, char* argv[]){
 
         string n = "";
         string e = "";
+        string b = "";
 
         int size = 16;
         char c;
-        while ((c = getopt (argc, argv, "i:o:s:a:n:e:")) != -1) {
+        while ((c = getopt (argc, argv, "i:o:s:a:n:e:b:")) != -1) {
             switch(c) {
                 case 'i':
                     infile = optarg;
@@ -38,6 +39,9 @@ int main(int argc, char* argv[]){
                     break;
                 case 'e':
                     e = optarg;
+                    break;
+                case 'b':
+                    b = optarg;
                     break;
                 default:
                     abort();
@@ -61,7 +65,7 @@ int main(int argc, char* argv[]){
         else if(attack == "pollard"){
             cout << "Pollard Attack" << endl;
 
-            PollardAttack(stringToBigUnsigned(n), e, infile, outfile);
+            PollardAttack(stringToBigUnsigned(n), stringToBigUnsigned(b), e, infile, outfile);
             //add function for decoding
             //decoding(infile,outfile,keyfile);
         }
@@ -97,11 +101,11 @@ void FermatAttack(BigUnsigned n, string e, string infile, string outfile) {
 
 }
 
-void PollardAttack(BigUnsigned n, string e, string infile, string outfile) {
+void PollardAttack(BigUnsigned n, BigUnsigned b, string e, string infile, string outfile) {
 
     pollard_att pollard;
 
-    pollard._pollards(n);
+    pollard._pollards(n, b);
 
     cout << "P: " << pollard.poll_p << endl;
     cout << "Q: " << pollard.poll_q << endl;

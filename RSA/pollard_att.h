@@ -7,7 +7,5 @@ public:
 	//mpf_init(MPF_p);
 	//mpf_init(MPF_q);
 
-	void _pollards(BigUnsigned);
+	void _pollards(BigUnsigned n, BigUnsigned B);
 };
-
-BigUnsigned _factoring(BigUnsigned, BigUnsigned, BigUnsigned);
