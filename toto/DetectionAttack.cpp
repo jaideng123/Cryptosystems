@@ -10,7 +10,7 @@ void lowerCase(string& str) {
 	}
 }
 
-// Basic detection attack. First argument takes name of image to attck. Second
+// Basic detection attack. First argument takes name of image to attack. Second
 // argument takes original image name, or original image md5 as a string
 // Returns true if the image contains hidden data
 bool detectionAttack(string imageOneName, string original) {
@@ -25,7 +25,9 @@ bool detectionAttack(string imageOneName, string original) {
 	QByteArray md_array_one = hash->hash(image_one->readAll(),QCryptographicHash::Md5);
 	string imageOne_md = QString(md_array_one.toHex()).toStdString();
 	lowerCase(imageOne_md);
+	cout << endl << "Image One MD5: " << imageOne_md << endl;
 	if (md_comp) {
+		cout << "Image Two MD5: " << original << endl;
 		if (imageOne_md == original) return false;
 	}
 	else {
@@ -34,6 +36,7 @@ bool detectionAttack(string imageOneName, string original) {
 		QByteArray md_array_two = hash->hash(image_two->readAll(),QCryptographicHash::Md5);
 		string imageTwo_md = QString(md_array_two.toHex()).toStdString();
 		lowerCase(imageTwo_md);
+		cout << "Image Two MD5: " << imageTwo_md << endl;
 		if (imageOne_md == imageTwo_md) return false;
 	}
 	return true;
