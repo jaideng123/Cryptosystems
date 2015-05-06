@@ -12,6 +12,7 @@ BigUnsigned generate_prime(int bit_length);
 BigUnsigned get_randint(int bit_length);
 BigUnsigned pow(BigUnsigned x, BigUnsigned y);
 BigUnsigned modulo(BigUnsigned base, BigUnsigned exponent, BigUnsigned mod);
+BigInteger multInv(BigInteger a, BigInteger b);
 //BigUnsigned _gcd(BigUnsigned a, BigUnsigned b);
 BigUnsigned _lcm(BigUnsigned a, BigUnsigned b);
 BigUnsigned _sqrt(BigUnsigned const &n);

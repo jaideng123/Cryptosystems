@@ -10,7 +10,7 @@ munchkincrypt:
 	g++ -std=c++11 RSA/crypt.cpp RSA/RSA.cpp  $(bigint-objects) -w -g -o munchkincrypt
 
 dorothy:
-	g++ -std=c++11 RSA/dorothy.cpp RSA/fermat_att.cpp RSA/pollard_att.cpp RSA/brute_force_att.cpp RSA/crypt.cpp $(bigint-objects) -w -g -o dorothy
+	g++ -std=c++11 RSA/fermat_att.cpp RSA/pollard_att.cpp RSA/brute_force_att.cpp RSA/crypt.cpp RSA/dorothy.cpp $(bigint-objects) -w -g -o dorothy
 
 clean:
 	rm *test munchkincrypt dorothy

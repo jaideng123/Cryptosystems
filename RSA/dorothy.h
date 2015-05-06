@@ -10,8 +10,8 @@
 #include <fstream>
 #include <stdexcept>
 
-void BruteAttack(BigUnsigned n);
-void FermatAttack(BigUnsigned n);
-void PollardAttack(BigUnsigned n);
+void BruteAttack(BigUnsigned n, string e, string infile, string outfile);
+void FermatAttack(BigUnsigned n, string e, string infile, string outfile);
+void PollardAttack(BigUnsigned n, string e, string infile, string outfile);
 
-void Decode(BigUnsigned p, BigUnsigned q, string infile, string outfile);
+void Decode(BigUnsigned p, BigUnsigned q, string e, string infile, string outfile);
