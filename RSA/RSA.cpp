@@ -258,6 +258,9 @@ int main(int argc, char* argv[]){
         else if(function == "genkey"){
             gen_keys(size,outfile,prime1,prime2,e);
         }
+		else if(function == "genprime"){
+			cout<<"Your Prime: "<<generate_prime(size)<<endl;
+        }
     }
     return 0;
 }
